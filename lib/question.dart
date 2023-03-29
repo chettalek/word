@@ -66,76 +66,131 @@ class _questionPageState extends State<questionPage> {
                 Image.asset('assets/images/green.png'),
               ],
             ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 38,
-                    width: 260,
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 248, 185, 103),
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10))),
-                    child: Center(
-                        child: Text(
-                      'ระดับชั้นประถมการศึกษาปีที่ 1',
-                      style: TextStyle(fontSize: 18),
-                    )),
-                  ),
-                  Container(
-                    height: 170,
-                    width: 170,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 38,
+                      width: 260,
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 248, 185, 103),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10))),
+                      child: Center(
+                          child: Text(
+                        'ระดับชั้นประถมการศึกษาปีที่ 1',
+                        style: TextStyle(fontSize: 18),
+                      )),
                     ),
-                    child: Image.asset('assets/images/ant.png'),
-                  ),
-                  IconButton(
-                      iconSize: 30,
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        SizedBox(
+                          width: 40,
+                        ),
+                        Container(
+                          height: 170,
+                          width: 170,
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                          ),
+                          child: Image.asset('assets/images/ant.png'),
+                        ),
+                        IconButton(
+                            iconSize: 30,
+                            onPressed: () {},
+                            icon: Icon(Icons.volume_up_outlined)),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        showPopup();
+                        //กดคำตอบ
+                      },
+                      child: Container(
+                        height: 45,
+                        width: 300,
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 252, 223, 127),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(25))),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      height: 45,
+                      width: 300,
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 252, 223, 127),
+                          borderRadius: BorderRadius.all(Radius.circular(25))),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      height: 45,
+                      width: 300,
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 252, 223, 127),
+                          borderRadius: BorderRadius.all(Radius.circular(25))),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      height: 45,
+                      width: 300,
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 252, 223, 127),
+                          borderRadius: BorderRadius.all(Radius.circular(25))),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text('cat'),
+                    IconButton(
+                      iconSize: 35,
                       onPressed: () {},
-                      icon: Icon(Icons.volume_up_outlined)),
-                  Container(
-                    // ติดปัญหา
-                    height: 45,
-                    width: 300,
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 252, 223, 127),
-                        borderRadius: BorderRadius.all(Radius.circular(25))),
-                  ),
-                  Container(
-                    height: 45,
-                    width: 300,
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 252, 223, 127),
-                        borderRadius: BorderRadius.all(Radius.circular(25))),
-                  ),
-                  Container(
-                    height: 45,
-                    width: 300,
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 252, 223, 127),
-                        borderRadius: BorderRadius.all(Radius.circular(25))),
-                  ),
-                  Container(
-                    height: 45,
-                    width: 300,
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 252, 223, 127),
-                        borderRadius: BorderRadius.all(Radius.circular(25))),
-                  ),
-                  Text('cat'),
-                  IconButton(
-                    iconSize: 35,
-                    onPressed: () {},
-                    icon: Icon(Icons.mic),
-                  ),
-                ],
-              ),
+                      icon: Icon(Icons.mic),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ));
+  }
+
+  void showPopup() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+          content: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text('lafsfasfas'),
+            Text('lafsfasfas'),
+            Text('lafsfasfas'),
+            Text('lafsfasfas'),
+            Text('lafsfasfas'),
+            Text('lafsfasfas'),
+            Text('lafsfasfas')
+          ],
+        ),
+      )),
+    );
   }
 }
