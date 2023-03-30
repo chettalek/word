@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class questionPage extends StatefulWidget {
@@ -47,10 +49,15 @@ class _questionPageState extends State<questionPage> {
                       ),
                     ),
                   ),
-                  IconButton(
-                      iconSize: 40,
-                      onPressed: () {},
-                      icon: Icon(Icons.settings)),
+                  GestureDetector(
+                    onTap: () {
+                      showSetting();
+                    },
+                    child: IconButton(
+                        iconSize: 40,
+                        onPressed: () {},
+                        icon: Icon(Icons.settings)),
+                  ),
                 ],
               ) //ฟังชั่นปุ่ม setting
             ],
@@ -119,43 +126,128 @@ class _questionPageState extends State<questionPage> {
                         //กดคำตอบ
                       },
                       child: Container(
-                        height: 45,
-                        width: 300,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 252, 223, 127),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(25))),
-                      ),
+                          height: 45,
+                          width: 300,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 252, 223, 127),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25))),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 25,
+                                  ),
+                                  Text(
+                                    'Ant (แอ็นท) แปลว่า มด',
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )),
                     ),
                     SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      height: 45,
-                      width: 300,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 252, 223, 127),
-                          borderRadius: BorderRadius.all(Radius.circular(25))),
+                    GestureDetector(
+                      onTap: () {
+                        showPopup();
+                        //กดคำตอบ
+                      },
+                      child: Container(
+                          height: 45,
+                          width: 300,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 252, 223, 127),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25))),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 25,
+                                  ),
+                                  Text(
+                                    'Ant (แอ็นท) แปลว่า มด',
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )),
                     ),
                     SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      height: 45,
-                      width: 300,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 252, 223, 127),
-                          borderRadius: BorderRadius.all(Radius.circular(25))),
+                    GestureDetector(
+                      onTap: () {
+                        showPopup();
+                        //กดคำตอบ
+                      },
+                      child: Container(
+                          height: 45,
+                          width: 300,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 252, 223, 127),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25))),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 25,
+                                  ),
+                                  Text(
+                                    'Ant (แอ็นท) แปลว่า มด',
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )),
                     ),
                     SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      height: 45,
-                      width: 300,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 252, 223, 127),
-                          borderRadius: BorderRadius.all(Radius.circular(25))),
+                    GestureDetector(
+                      onTap: () {
+                        showPopup();
+                        //กดคำตอบ
+                      },
+                      child: Container(
+                          height: 45,
+                          width: 300,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 252, 223, 127),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25))),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 25,
+                                  ),
+                                  Text(
+                                    'Ant (แอ็นท) แปลว่า มด',
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )),
                     ),
                     SizedBox(
                       height: 10,
@@ -178,19 +270,69 @@ class _questionPageState extends State<questionPage> {
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
+          backgroundColor: Color.fromARGB(255, 255, 192, 91),
           content: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text('lafsfasfas'),
-            Text('lafsfasfas'),
-            Text('lafsfasfas'),
-            Text('lafsfasfas'),
-            Text('lafsfasfas'),
-            Text('lafsfasfas'),
-            Text('lafsfasfas')
-          ],
+            child: Column(
+              children: [
+                Image.asset('assets/images/victory.png'),
+                Text(
+                  '+5 Score',
+                  style: TextStyle(fontSize: 28),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  height: 40,
+                  width: 133,
+                  child: ElevatedButton(
+                    onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 248, 232, 207),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: const Text(
+                      'Next',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                SizedBox(
+                  height: 40,
+                  width: 180,
+                  child: ElevatedButton(
+                    onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 248, 232, 207),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: const Text(
+                      'Back to menu',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )),
+    );
+  }
+
+  void showSetting() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        content: Column(
+          children: [Text('asdasdasdas')],
         ),
-      )),
+      ),
     );
   }
 }
