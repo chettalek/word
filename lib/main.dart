@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "My App",
-      home: const questionPage(),
+      home: const playPage(),
       theme: ThemeData(primarySwatch: Colors.orange),
     );
   }

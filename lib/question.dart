@@ -49,15 +49,12 @@ class _questionPageState extends State<questionPage> {
                       ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      showSetting();
-                    },
-                    child: IconButton(
-                        iconSize: 40,
-                        onPressed: () {},
-                        icon: Icon(Icons.settings)),
-                  ),
+                  IconButton(
+                      iconSize: 40,
+                      onPressed: () {
+                        showSetting();
+                      },
+                      icon: Icon(Icons.settings)),
                 ],
               ) //ฟังชั่นปุ่ม setting
             ],
@@ -329,10 +326,171 @@ class _questionPageState extends State<questionPage> {
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        content: Column(
-          children: [Text('asdasdasdas')],
-        ),
-      ),
+          contentPadding: EdgeInsets.zero,
+          backgroundColor: Color.fromARGB(255, 255, 192, 91),
+          content: SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                        iconSize: 30,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(
+                          Icons.close,
+                          color: Colors.red,
+                          size: 40,
+                        )),
+                  ],
+                ),
+                SizedBox(
+                  height: 40,
+                  width: 180,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }, //ฟังชั่นการกดปุ่ม
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 248, 232, 207),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: const Text(
+                      'Continue',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  height: 40,
+                  width: 180,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      soundCheck();
+                      //กดคำตอบ
+                    }, //ฟังชั่นการกดปุ่ม
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 248, 232, 207),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: const Text(
+                      'Option',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  height: 40,
+                  width: 180,
+                  child: ElevatedButton(
+                    onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 248, 232, 207),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: const Text(
+                      'Back to menu',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+              ],
+            ),
+          )),
+    );
+  }
+
+  void soundCheck() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+          backgroundColor: Color.fromARGB(255, 255, 192, 91),
+          content: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      height: 80,
+                      width: 80,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(50))),
+                      child: IconButton(
+                          iconSize: 30,
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.volume_up,
+                            color: Colors.black,
+                            size: 40,
+                          )),
+                    ),
+                    Container(
+                      height: 80,
+                      width: 80,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(50))),
+                      child: IconButton(
+                          iconSize: 30,
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.volume_up,
+                            color: Colors.black,
+                            size: 40,
+                          )),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                SizedBox(
+                  height: 40,
+                  width: 180,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }, //ฟังชั่นการกดปุ่ม
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 248, 232, 207),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: const Text(
+                      'Continue',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+              ],
+            ),
+          )),
     );
   }
 }
