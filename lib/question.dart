@@ -352,7 +352,7 @@ class _questionPageState extends State<questionPage> {
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);
-                    }, //ฟังชั่นการกดปุ่ม
+                    }, //ฟังชั่นการกดปุ่ม กลับหน้าเดิม
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(255, 248, 232, 207),
                       shape: RoundedRectangleBorder(

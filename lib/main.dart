@@ -5,6 +5,7 @@ import 'package:flutter_application_1/name.dart';
 import 'package:flutter_application_1/howtoplay.dart';
 import 'package:flutter_application_1/category.dart';
 import 'package:flutter_application_1/question.dart';
+import 'package:flutter_application_1/scoreview.dart';
 
 void main() {
   runApp(MyApp());
