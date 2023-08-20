@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class signinPage extends StatefulWidget {
   const signinPage({super.key});
@@ -8,6 +9,30 @@ class signinPage extends StatefulWidget {
 }
 
 class _signinPageState extends State<signinPage> {
+  GoogleSignIn googleSignIn = GoogleSignIn(
+    scopes: [
+      // // 'email',
+      // 'https://www.googleapis.com/auth/user.emails.read',
+      // 'https://www.googleapis.com/auth/userinfo.email'
+    ],
+  );
+
+  Future signInWithGoogle() async {
+    try {
+      googleSignIn.signOut();
+
+      GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+      if (googleSignInAccount != null) {
+        GoogleSignInAuthentication userAuth =
+            await googleSignInAccount.authentication;
+
+        print(googleSignInAccount);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   //แสดงข้อมูล
   @override
   Widget build(BuildContext context) {
@@ -26,6 +51,7 @@ class _signinPageState extends State<signinPage> {
                 children: [
                   GestureDetector(
                     onTap: () {
+                      signInWithGoogle();
                       print("plakek"); //ใส่ตัวลิ้งไปล็อคอิน gmail
                     },
                     child: SizedBox(
