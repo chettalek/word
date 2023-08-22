@@ -1,5 +1,10 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/name.dart';
+import 'package:flutter_application_1/play.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class signinPage extends StatefulWidget {
   const signinPage({super.key});
@@ -26,10 +31,45 @@ class _signinPageState extends State<signinPage> {
         GoogleSignInAuthentication userAuth =
             await googleSignInAccount.authentication;
 
-        print(googleSignInAccount);
+        print(googleSignInAccount.email);
+        login(googleSignInAccount.email);
       }
     } catch (e) {
       print(e);
+    }
+  }
+
+  Future login(email) async {
+    try {
+      var response = await http.get(
+        Uri.parse(
+            'https://apiword.learnlangc.com/mobilelogin.php?username=$email'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        var post = json.decode(response.body);
+        print(post["status"]);
+        if (post["status"] == true) {
+          if (post["isLogin"] == true) {
+            final SharedPreferences prefs = await SharedPreferences.getInstance();
+            await prefs.setString('email', email);
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: ((context) => playPage())),
+                (route) => false);
+          } else {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: ((context) => namePage())),
+                (route) => false);
+          }
+        }
+      }
+    } catch (error) {
+      print(error);
     }
   }
 

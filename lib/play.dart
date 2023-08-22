@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/signin.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class playPage extends StatefulWidget {
   const playPage({super.key});
@@ -80,6 +82,35 @@ class _playPageState extends State<playPage> {
                       ),
                       child: const Text(
                         'Score',
+                        style: TextStyle(fontSize: 30),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: 50,
+                    width: 180,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        final SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        await prefs.clear();
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => signinPage())),
+                            (route) => false);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 255, 37, 37),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                      ),
+                      child: const Text(
+                        'Logout',
                         style: TextStyle(fontSize: 30),
                       ),
                     ),
