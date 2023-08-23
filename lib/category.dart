@@ -67,23 +67,7 @@ class _categoryPageState extends State<categoryPage> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 40,
-                width: 300,
-                child: ElevatedButton(
-                  onPressed: () {}, //ฟังชั่นการกดปุ่ม
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 248, 185, 103),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                  ),
-                  child: const Text(
-                    'ระดับชั้นประถมการศึกษาปีที่ 1',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-              ),
+            
               SizedBox(
                 height: 40,
                 width: 300,

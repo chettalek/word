@@ -51,20 +51,22 @@ class _signinPageState extends State<signinPage> {
 
       if (response.statusCode == 200) {
         var post = json.decode(response.body);
-        print(post["status"]);
+        print(post);
         if (post["status"] == true) {
-          if (post["isLogin"] == true) {
-            final SharedPreferences prefs = await SharedPreferences.getInstance();
+          if (post["name"] != "" &&post["name"] != null) {
+            final SharedPreferences prefs =
+                await SharedPreferences.getInstance();
             await prefs.setString('email', email);
+            await prefs.setString('name', post["name"]);
             Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: ((context) => playPage())),
                 (route) => false);
           } else {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: ((context) => namePage())),
-                (route) => false);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: ((context) => namePage(email: email,))),
+            );
           }
         }
       }

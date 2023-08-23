@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/scoreview.dart';
 import 'package:flutter_application_1/signin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,6 +13,22 @@ class playPage extends StatefulWidget {
 }
 
 class _playPageState extends State<playPage> {
+  String Fullname = "";
+  void getname() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      Fullname = prefs.getString('name') ?? "";
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getname();
+  }
+
   //แสดงข้อมูล
   @override
   Widget build(BuildContext context) {
@@ -23,6 +40,7 @@ class _playPageState extends State<playPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset('assets/images/WORD.png'),
+              Text('Welcome $Fullname'),
               Column(
                 children: [
                   SizedBox(
@@ -72,7 +90,11 @@ class _playPageState extends State<playPage> {
                     width: 180,
                     child: ElevatedButton(
                       onPressed: () {
-                        showscore();
+                        //showscore();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => scorePage()));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromARGB(255, 248, 185, 103),
