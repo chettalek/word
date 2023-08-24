@@ -22,7 +22,7 @@ class _questionPageState extends State<questionPage> {
 
   bool isloading = true;
   FlutterTts ftts = FlutterTts();
-  
+
   Future getquestion(classid, no) async {
     try {
       var response = await http.get(
@@ -100,221 +100,228 @@ class _questionPageState extends State<questionPage> {
           ),
         ),
         backgroundColor: Color.fromARGB(255, 248, 232, 207),
-        body: (isloading==true)?Center(child: CircularProgressIndicator()):Stack(
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/images/green.png'),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 38,
-                      width: 260,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 248, 185, 103),
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(10),
-                              bottomRight: Radius.circular(10))),
-                      child: Center(
-                          child: Text(
-                        'ระดับชั้นประถมการศึกษาปีที่ 1',
-                        style: TextStyle(fontSize: 18),
-                      )),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Container(
-                            height: 170,
-                            width: 170,
+        body: (isloading == true)
+            ? Center(child: CircularProgressIndicator())
+            : Stack(
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/green.png'),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 38,
+                            width: 260,
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15)),
-                            ),
-                            child: Image.network(
-                                'https://apiword.learnlangc.com/image/$pic')),
-                        IconButton(
-                            iconSize: 30,
-                            onPressed: () async{
-                              //your custom configuration
-                          await ftts.setLanguage("en-US");
-                          await ftts.setSpeechRate(0.5); //speed of speech
-                          await ftts.setVolume(1.0); //volume of speech
-                          await ftts.setPitch(1); //pitc of sound
+                                color: Color.fromARGB(255, 248, 185, 103),
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(10))),
+                            child: Center(
+                                child: Text(
+                              'ระดับชั้นประถมการศึกษาปีที่ 1',
+                              style: TextStyle(fontSize: 18),
+                            )),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              SizedBox(
+                                width: 40,
+                              ),
+                              Container(
+                                  height: 170,
+                                  width: 170,
+                                  decoration: BoxDecoration(
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15)),
+                                  ),
+                                  child: Image.network(
+                                      'https://apiword.learnlangc.com/image/$pic')),
+                              IconButton(
+                                  iconSize: 30,
+                                  onPressed: () async {
+                                    //your custom configuration
+                                    await ftts.setLanguage("en-US");
+                                    await ftts
+                                        .setSpeechRate(0.5); //speed of speech
+                                    await ftts
+                                        .setVolume(1.0); //volume of speech
+                                    await ftts.setPitch(1); //pitc of sound
 
-                          //play text to sp
-                          var result = await ftts.speak("Hello World, this is Flutter Campus.");
-                          if(result == 1){
-                              //speaking
-                          }else{
-                              //not speaking
-                          }
+                                    //play text to sp
+                                    var result = await ftts.speak(
+                                        "Hello World, this is Flutter Campus.");
+                                    if (result == 1) {
+                                      //speaking
+                                      print('ok');
+                                    } else {
+                                      //not speaking
+                                      print('no');
+                                    }
+                                  },
+                                  icon: Icon(Icons.volume_up_outlined)),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              showPopup();
+                              //กดคำตอบ
                             },
-                            icon: Icon(Icons.volume_up_outlined)),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        showPopup();
-                        //กดคำตอบ
-                      },
-                      child: Container(
-                          height: 45,
-                          width: 300,
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 252, 223, 127),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(25))),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 25,
-                                  ),
-                                  Text(
-                                    '$ans1',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        showPopup();
-                        //กดคำตอบ
-                      },
-                      child: Container(
-                          height: 45,
-                          width: 300,
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 252, 223, 127),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(25))),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 25,
-                                  ),
-                                  Text(
-                                    '$ans2',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        showPopup();
-                        //กดคำตอบ
-                      },
-                      child: Container(
-                          height: 45,
-                          width: 300,
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 252, 223, 127),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(25))),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 25,
-                                  ),
-                                  Text(
-                                    '$ans3',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        showPopup();
-                        //กดคำตอบ
-                      },
-                      child: Container(
-                          height: 45,
-                          width: 300,
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 252, 223, 127),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(25))),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 25,
-                                  ),
-                                  Text(
-                                    '$ans4',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text('cat'),
-                    IconButton(
-                      iconSize: 35,
-                      onPressed: () {},
-                      icon: Icon(Icons.mic),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ));
+                            child: Container(
+                                height: 45,
+                                width: 300,
+                                decoration: BoxDecoration(
+                                    color: Color.fromARGB(255, 252, 223, 127),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(25))),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 25,
+                                        ),
+                                        Text(
+                                          '$ans1',
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              showPopup();
+                              //กดคำตอบ
+                            },
+                            child: Container(
+                                height: 45,
+                                width: 300,
+                                decoration: BoxDecoration(
+                                    color: Color.fromARGB(255, 252, 223, 127),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(25))),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 25,
+                                        ),
+                                        Text(
+                                          '$ans2',
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              showPopup();
+                              //กดคำตอบ
+                            },
+                            child: Container(
+                                height: 45,
+                                width: 300,
+                                decoration: BoxDecoration(
+                                    color: Color.fromARGB(255, 252, 223, 127),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(25))),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 25,
+                                        ),
+                                        Text(
+                                          '$ans3',
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              showPopup();
+                              //กดคำตอบ
+                            },
+                            child: Container(
+                                height: 45,
+                                width: 300,
+                                decoration: BoxDecoration(
+                                    color: Color.fromARGB(255, 252, 223, 127),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(25))),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 25,
+                                        ),
+                                        Text(
+                                          '$ans4',
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text('cat'),
+                          IconButton(
+                            iconSize: 35,
+                            onPressed: () {},
+                            icon: Icon(Icons.mic),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ));
   }
 
   void showPopup() {
