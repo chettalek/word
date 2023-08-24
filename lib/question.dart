@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'dart:ui';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class questionPage extends StatefulWidget {
   const questionPage({super.key});
@@ -10,6 +13,54 @@ class questionPage extends StatefulWidget {
 }
 
 class _questionPageState extends State<questionPage> {
+  String pic = "";
+  String ans1 = "";
+  String ans2 = "";
+  String ans3 = "";
+  String ans4 = "";
+  String anstrue = "";
+
+  bool isloading = true;
+  FlutterTts ftts = FlutterTts();
+  
+  Future getquestion(classid, no) async {
+    try {
+      var response = await http.get(
+        Uri.parse(
+            'https://apiword.learnlangc.com/getmobilequestion.php?id_class=$classid&no=$no'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        var post = json.decode(response.body);
+        print(post);
+        setState(() {
+          pic = post[0]["pic"];
+          ans1 = post[0]["answer1"];
+          ans2 = post[0]["answer2"];
+          ans3 = post[0]["answer3"];
+          ans4 = post[0]["answer4"];
+          anstrue = post[0]["answer_true"];
+        });
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getquestion(1, 1).then((value) {
+      setState(() {
+        isloading = false;
+      });
+    });
+  }
+
   //แสดงข้อมูล
   @override
   Widget build(BuildContext context) {
@@ -19,23 +70,11 @@ class _questionPageState extends State<questionPage> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                height: 40,
-                width: 100,
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 248, 232, 207),
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(18),
-                        bottomRight: Radius.circular(18))),
-                child: Center(
-                  child: Text(
-                    'Score', //รอดึงข้อมุลด่าน
-                    style: TextStyle(fontSize: 25),
-                  ),
-                ),
-              ),
               Row(
                 children: [
+                  SizedBox(
+                    width: 140,
+                  ),
                   Container(
                     height: 40,
                     width: 100,
@@ -61,7 +100,7 @@ class _questionPageState extends State<questionPage> {
           ),
         ),
         backgroundColor: Color.fromARGB(255, 248, 232, 207),
-        body: Stack(
+        body: (isloading==true)?Center(child: CircularProgressIndicator()):Stack(
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -100,17 +139,32 @@ class _questionPageState extends State<questionPage> {
                           width: 40,
                         ),
                         Container(
-                          height: 170,
-                          width: 170,
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                          ),
-                          child: Image.asset('assets/images/ant.png'),
-                        ),
+                            height: 170,
+                            width: 170,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                            ),
+                            child: Image.network(
+                                'https://apiword.learnlangc.com/image/$pic')),
                         IconButton(
                             iconSize: 30,
-                            onPressed: () {},
+                            onPressed: () async{
+                              //your custom configuration
+                          await ftts.setLanguage("en-US");
+                          await ftts.setSpeechRate(0.5); //speed of speech
+                          await ftts.setVolume(1.0); //volume of speech
+                          await ftts.setPitch(1); //pitc of sound
+
+                          //play text to sp
+                          var result = await ftts.speak("Hello World, this is Flutter Campus.");
+                          if(result == 1){
+                              //speaking
+                          }else{
+                              //not speaking
+                          }
+                            },
                             icon: Icon(Icons.volume_up_outlined)),
                       ],
                     ),
@@ -139,7 +193,7 @@ class _questionPageState extends State<questionPage> {
                                     width: 25,
                                   ),
                                   Text(
-                                    'Ant (แอ็นท) แปลว่า มด',
+                                    '$ans1',
                                     style: TextStyle(fontSize: 18),
                                   ),
                                 ],
@@ -172,7 +226,7 @@ class _questionPageState extends State<questionPage> {
                                     width: 25,
                                   ),
                                   Text(
-                                    'Ant (แอ็นท) แปลว่า มด',
+                                    '$ans2',
                                     style: TextStyle(fontSize: 18),
                                   ),
                                 ],
@@ -205,7 +259,7 @@ class _questionPageState extends State<questionPage> {
                                     width: 25,
                                   ),
                                   Text(
-                                    'Ant (แอ็นท) แปลว่า มด',
+                                    '$ans3',
                                     style: TextStyle(fontSize: 18),
                                   ),
                                 ],
@@ -238,7 +292,7 @@ class _questionPageState extends State<questionPage> {
                                     width: 25,
                                   ),
                                   Text(
-                                    'Ant (แอ็นท) แปลว่า มด',
+                                    '$ans4',
                                     style: TextStyle(fontSize: 18),
                                   ),
                                 ],

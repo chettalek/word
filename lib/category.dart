@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/question.dart';
 
 class categoryPage extends StatefulWidget {
   const categoryPage({super.key});
@@ -54,7 +55,12 @@ class _categoryPageState extends State<categoryPage> {
                 height: 40,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => questionPage()));
+                  }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
                     shape: RoundedRectangleBorder(
@@ -67,7 +73,6 @@ class _categoryPageState extends State<categoryPage> {
                   ),
                 ),
               ),
-            
               SizedBox(
                 height: 40,
                 width: 300,

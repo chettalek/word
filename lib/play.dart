@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/category.dart';
+import 'package:flutter_application_1/question.dart';
 import 'package:flutter_application_1/scoreview.dart';
 import 'package:flutter_application_1/signin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -47,7 +49,12 @@ class _playPageState extends State<playPage> {
                     height: 50,
                     width: 180,
                     child: ElevatedButton(
-                      onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => categoryPage()));
+                      }, //ฟังชั่นการกดปุ่ม
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromARGB(255, 248, 185, 103),
                         shape: RoundedRectangleBorder(
@@ -56,12 +63,12 @@ class _playPageState extends State<playPage> {
                       ),
                       child: const Text(
                         'Play',
-                        style: TextStyle(fontSize: 30),
+                        style: TextStyle(fontSize: 25),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   SizedBox(
                     height: 50,
@@ -78,12 +85,12 @@ class _playPageState extends State<playPage> {
                       ),
                       child: const Text(
                         'Option',
-                        style: TextStyle(fontSize: 30),
+                        style: TextStyle(fontSize: 25),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   SizedBox(
                     height: 50,
@@ -104,12 +111,34 @@ class _playPageState extends State<playPage> {
                       ),
                       child: const Text(
                         'Score',
-                        style: TextStyle(fontSize: 30),
+                        style: TextStyle(fontSize: 25),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 15,
+                  ),
+                  SizedBox(
+                    height: 50,
+                    width: 180,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        soundCheck();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 248, 185, 103),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                      ),
+                      child: const Text(
+                        'How to play',
+                        style: TextStyle(fontSize: 25),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
                   ),
                   SizedBox(
                     height: 50,
@@ -133,7 +162,7 @@ class _playPageState extends State<playPage> {
                       ),
                       child: const Text(
                         'Logout',
-                        style: TextStyle(fontSize: 30),
+                        style: TextStyle(fontSize: 25),
                       ),
                     ),
                   ),
