@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/scoreclass.dart';
 
 class scorePage extends StatefulWidget {
   const scorePage({super.key});
@@ -40,6 +41,7 @@ class _scorePageState extends State<scorePage> {
             ],
           ),
         ),
+        backgroundColor: Color.fromARGB(255, 248, 232, 207),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,7 +53,12 @@ class _scorePageState extends State<scorePage> {
                 height: 40,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => scoreclassPage()));
+                  }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
                     shape: RoundedRectangleBorder(

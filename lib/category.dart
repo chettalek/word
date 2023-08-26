@@ -14,6 +14,7 @@ class _categoryPageState extends State<categoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Color.fromARGB(255, 248, 185, 103),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -22,7 +23,9 @@ class _categoryPageState extends State<categoryPage> {
                 height: 40,
                 width: 133,
                 child: ElevatedButton(
-                  onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 232, 207),
                     shape: RoundedRectangleBorder(

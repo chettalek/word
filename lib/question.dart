@@ -83,7 +83,7 @@ class _questionPageState extends State<questionPage> {
                         borderRadius: BorderRadius.all(Radius.circular(18))),
                     child: Center(
                       child: Text(
-                        '1/155', //รอดึงข้อมุลด่าน
+                        '1/20', //รอดึงข้อมุลด่าน
                         style: TextStyle(fontSize: 25),
                       ),
                     ),
@@ -153,8 +153,9 @@ class _questionPageState extends State<questionPage> {
                               IconButton(
                                   iconSize: 30,
                                   onPressed: () async {
+                                    print('easlelasl');
                                     //your custom configuration
-                                    await ftts.setLanguage("en-US");
+                                   // await ftts.setLanguage("en-US");
                                     await ftts
                                         .setSpeechRate(0.5); //speed of speech
                                     await ftts
@@ -164,6 +165,7 @@ class _questionPageState extends State<questionPage> {
                                     //play text to sp
                                     var result = await ftts.speak(
                                         "Hello World, this is Flutter Campus.");
+                                    print(result);
                                     if (result == 1) {
                                       //speaking
                                       print('ok');

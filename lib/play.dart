@@ -46,8 +46,8 @@ class _playPageState extends State<playPage> {
               Column(
                 children: [
                   SizedBox(
-                    height: 50,
-                    width: 180,
+                    height: 40,
+                    width: 160,
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -71,8 +71,8 @@ class _playPageState extends State<playPage> {
                     height: 15,
                   ),
                   SizedBox(
-                    height: 50,
-                    width: 180,
+                    height: 40,
+                    width: 160,
                     child: ElevatedButton(
                       onPressed: () {
                         soundCheck();
@@ -93,8 +93,8 @@ class _playPageState extends State<playPage> {
                     height: 15,
                   ),
                   SizedBox(
-                    height: 50,
-                    width: 180,
+                    height: 40,
+                    width: 160,
                     child: ElevatedButton(
                       onPressed: () {
                         //showscore();
@@ -119,11 +119,11 @@ class _playPageState extends State<playPage> {
                     height: 15,
                   ),
                   SizedBox(
-                    height: 50,
-                    width: 180,
+                    height: 40,
+                    width: 160,
                     child: ElevatedButton(
                       onPressed: () {
-                        soundCheck();
+                        howtoplay();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromARGB(255, 248, 185, 103),
@@ -133,7 +133,7 @@ class _playPageState extends State<playPage> {
                       ),
                       child: const Text(
                         'How to play',
-                        style: TextStyle(fontSize: 25),
+                        style: TextStyle(fontSize: 24),
                       ),
                     ),
                   ),
@@ -141,8 +141,8 @@ class _playPageState extends State<playPage> {
                     height: 15,
                   ),
                   SizedBox(
-                    height: 50,
-                    width: 180,
+                    height: 40,
+                    width: 160,
                     child: ElevatedButton(
                       onPressed: () async {
                         final SharedPreferences prefs =
@@ -251,7 +251,7 @@ class _playPageState extends State<playPage> {
     );
   }
 
-  void showscore() {
+  void howtoplay() {
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -259,46 +259,28 @@ class _playPageState extends State<playPage> {
           content: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'Score',
-                  style: TextStyle(fontSize: 40),
+                  'How to play',
+                  style: TextStyle(fontSize: 28),
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(child: Center(child: Text('1'))),
-                        Expanded(child: Center(child: Text('Mwd'))),
-                        Expanded(child: Center(child: Text('400'))),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(child: Center(child: Text('2'))),
-                        Expanded(child: Center(child: Text('adw'))),
-                        Expanded(child: Center(child: Text('10'))),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(child: Center(child: Text('3'))),
-                        Expanded(child: Center(child: Text('too'))),
-                        Expanded(child: Center(child: Text('340'))),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(child: Center(child: Text('4'))),
-                        Expanded(child: Center(child: Text('plot'))),
-                        Expanded(child: Center(child: Text('90'))),
-                      ],
-                    ),
-                  ],
-                ),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(
+                    '1. กดที่ปุ่ม Play',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  Text('2. เลือกระดับชั้นของคำถาม',
+                      style: TextStyle(fontSize: 18)),
+                  Text(
+                      '3. เลือกตอบคำศัพท์ให้ตรงกับรูปภาพของโจทย์ หรือตอบโดยการกดที่รูปไมค์',
+                      style: TextStyle(fontSize: 18)),
+                  Text('4. กดที่รูปลำโพงเพื่อฟังเสียงของคำศัพท์ได้',
+                      style: TextStyle(fontSize: 18))
+                ]),
                 SizedBox(
                   height: 20,
                 ),
@@ -322,7 +304,7 @@ class _playPageState extends State<playPage> {
                   ),
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 1,
                 ),
               ],
             ),
