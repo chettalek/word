@@ -57,7 +57,9 @@ class _scorePageState extends State<scorePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => scoreclassPage()));
+                            builder: (context) => scoreclassPage(
+                                  classno: 1,
+                                )));
                   }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
@@ -75,7 +77,14 @@ class _scorePageState extends State<scorePage> {
                 height: 40,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => scoreclassPage(
+                                  classno: 2,
+                                )));
+                  }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
                     shape: RoundedRectangleBorder(
@@ -92,7 +101,14 @@ class _scorePageState extends State<scorePage> {
                 height: 40,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => scoreclassPage(
+                                  classno: 3,
+                                )));
+                  }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
                     shape: RoundedRectangleBorder(
@@ -109,7 +125,14 @@ class _scorePageState extends State<scorePage> {
                 height: 40,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => scoreclassPage(
+                                  classno: 4,
+                                )));
+                  }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
                     shape: RoundedRectangleBorder(
@@ -126,7 +149,14 @@ class _scorePageState extends State<scorePage> {
                 height: 40,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => scoreclassPage(
+                                  classno: 5,
+                                )));
+                  }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
                     shape: RoundedRectangleBorder(
@@ -143,7 +173,14 @@ class _scorePageState extends State<scorePage> {
                 height: 40,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => scoreclassPage(
+                                  classno: 6,
+                                )));
+                  }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
                     shape: RoundedRectangleBorder(
