@@ -35,7 +35,7 @@ class _namePageState extends State<namePage> {
               MaterialPageRoute(builder: ((context) => playPage())),
               (route) => false);
         } else {
-          ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(post["message"]),
           ));
         }
@@ -93,7 +93,14 @@ class _namePageState extends State<namePage> {
                         width: 120,
                         child: ElevatedButton(
                           onPressed: () {
-                            updatename(widget.email, yourname.text);
+                            if (yourname.text.length > 8) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text("ใส่ได้ไม่เกิน 8 ตัวอักษร"),
+                              ));
+                            } else {
+                              updatename(widget.email, yourname.text);
+                            }
                           }, //ฟังชั่นการกดปุ่ม
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color.fromARGB(255, 248, 185, 103),

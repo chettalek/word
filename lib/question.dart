@@ -6,10 +6,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 class questionPage extends StatefulWidget {
-  const questionPage({super.key});
-
   @override
   State<questionPage> createState() => _questionPageState();
+  final row;
+  final chap;
+  final chap_cur;
+  const questionPage(
+      {super.key,
+      required this.row,
+      required this.chap,
+      required this.chap_cur});
 }
 
 class _questionPageState extends State<questionPage> {
@@ -54,7 +60,7 @@ class _questionPageState extends State<questionPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getquestion(1, 1).then((value) {
+    getquestion(widget.chap, widget.chap_cur).then((value) {
       setState(() {
         isloading = false;
       });
@@ -83,7 +89,7 @@ class _questionPageState extends State<questionPage> {
                         borderRadius: BorderRadius.all(Radius.circular(18))),
                     child: Center(
                       child: Text(
-                        '1/20', //รอดึงข้อมุลด่าน
+                        '${widget.chap_cur}/${widget.row}', //รอดึงข้อมุลด่าน
                         style: TextStyle(fontSize: 25),
                       ),
                     ),
@@ -127,7 +133,7 @@ class _questionPageState extends State<questionPage> {
                                     bottomRight: Radius.circular(10))),
                             child: Center(
                                 child: Text(
-                              'ระดับชั้นประถมการศึกษาปีที่ 1',
+                              'ระดับชั้นประถมการศึกษาปีที่ ${widget.chap}',
                               style: TextStyle(fontSize: 18),
                             )),
                           ),
@@ -153,9 +159,7 @@ class _questionPageState extends State<questionPage> {
                               IconButton(
                                   iconSize: 30,
                                   onPressed: () async {
-                                    print('easlelasl');
-                                    //your custom configuration
-                                   // await ftts.setLanguage("en-US");
+                                    await ftts.setLanguage("en-US");
                                     await ftts
                                         .setSpeechRate(0.5); //speed of speech
                                     await ftts
@@ -163,8 +167,7 @@ class _questionPageState extends State<questionPage> {
                                     await ftts.setPitch(1); //pitc of sound
 
                                     //play text to sp
-                                    var result = await ftts.speak(
-                                        "Hello World, this is Flutter Campus.");
+                                    var result = await ftts.speak(anstrue);
                                     print(result);
                                     if (result == 1) {
                                       //speaking
@@ -182,8 +185,11 @@ class _questionPageState extends State<questionPage> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              showPopup();
-                              //กดคำตอบ
+                              if (ans1.split("||")[0] == anstrue) {
+                                showPopup(true);
+                              } else {
+                                showPopup(false);
+                              }
                             },
                             child: Container(
                                 height: 45,
@@ -202,7 +208,7 @@ class _questionPageState extends State<questionPage> {
                                           width: 25,
                                         ),
                                         Text(
-                                          '$ans1',
+                                          ans1.replaceAll("||", " "),
                                           style: TextStyle(fontSize: 18),
                                         ),
                                       ],
@@ -215,7 +221,6 @@ class _questionPageState extends State<questionPage> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              showPopup();
                               //กดคำตอบ
                             },
                             child: Container(
@@ -235,7 +240,37 @@ class _questionPageState extends State<questionPage> {
                                           width: 25,
                                         ),
                                         Text(
-                                          '$ans2',
+                                          ans2.replaceAll("||", " "),
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                                height: 45,
+                                width: 300,
+                                decoration: BoxDecoration(
+                                    color: Color.fromARGB(255, 252, 223, 127),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(25))),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 25,
+                                        ),
+                                        Text(
+                                          ans3.replaceAll("||", " "),
                                           style: TextStyle(fontSize: 18),
                                         ),
                                       ],
@@ -248,7 +283,6 @@ class _questionPageState extends State<questionPage> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              showPopup();
                               //กดคำตอบ
                             },
                             child: Container(
@@ -268,40 +302,7 @@ class _questionPageState extends State<questionPage> {
                                           width: 25,
                                         ),
                                         Text(
-                                          '$ans3',
-                                          style: TextStyle(fontSize: 18),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              showPopup();
-                              //กดคำตอบ
-                            },
-                            child: Container(
-                                height: 45,
-                                width: 300,
-                                decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 252, 223, 127),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(25))),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 25,
-                                        ),
-                                        Text(
-                                          '$ans4',
+                                          ans4.replaceAll("||", " "),
                                           style: TextStyle(fontSize: 18),
                                         ),
                                       ],
@@ -326,7 +327,7 @@ class _questionPageState extends State<questionPage> {
               ));
   }
 
-  void showPopup() {
+  void showPopup(istrue) {
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -334,11 +335,12 @@ class _questionPageState extends State<questionPage> {
           content: SingleChildScrollView(
             child: Column(
               children: [
-                Image.asset('assets/images/victory.png'),
-                Text(
-                  '+5 Score',
-                  style: TextStyle(fontSize: 28),
-                ),
+                (istrue == true)
+                    ? Image.asset('assets/images/victory.png')
+                    : Image.asset(
+                        'assets/images/incorrect.png',
+                        height: 130,
+                      ),
                 SizedBox(
                   height: 15,
                 ),
