@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/about.dart';
 import 'package:flutter_application_1/category.dart';
 import 'package:flutter_application_1/question.dart';
 import 'package:flutter_application_1/scoreview.dart';
@@ -68,7 +69,7 @@ class _playPageState extends State<playPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 10,
                   ),
                   SizedBox(
                     height: 40,
@@ -90,7 +91,7 @@ class _playPageState extends State<playPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 10,
                   ),
                   SizedBox(
                     height: 40,
@@ -116,7 +117,7 @@ class _playPageState extends State<playPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 10,
                   ),
                   SizedBox(
                     height: 40,
@@ -138,8 +139,34 @@ class _playPageState extends State<playPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 10,
                   ),
+                  SizedBox(
+                    height: 40,
+                    width: 160,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => aboutPage()));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 248, 185, 103),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                      ),
+                      child: const Text(
+                        'About',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(width: 8),
                   SizedBox(
                     height: 40,
                     width: 160,
@@ -311,4 +338,60 @@ class _playPageState extends State<playPage> {
           )),
     );
   }
+
+  // void about() {
+  //   showDialog<String>(
+  //     context: context,
+  //     builder: (BuildContext context) => AlertDialog(
+  //         backgroundColor: Color.fromARGB(255, 255, 192, 91),
+  //         content: SingleChildScrollView(
+  //           child: Column(
+  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //             crossAxisAlignment: CrossAxisAlignment.center,
+  //             children: [
+  //               Text(
+  //                 'About',
+  //                 style: TextStyle(fontSize: 28),
+  //               ),
+  //               SizedBox(
+  //                 height: 20,
+  //               ),
+  //               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+  //                 Text(
+  //                     'คำศัพท์ภาษาอังกฤษพื้นฐานระดับชั้นประถมศึกษาสถาบันภาษาอังกฤษ สำนักงานคณะกรรมการการศึกษาขั้นพื้นฐาน กระทรวงศึกษาธิการ',
+  //                     style: TextStyle(fontSize: 18)),
+  //                 Text('', style: TextStyle(fontSize: 18)),
+  //                 Text('', style: TextStyle(fontSize: 18)),
+  //                 Text('', style: TextStyle(fontSize: 18))
+  //               ]),
+  //               SizedBox(
+  //                 height: 20,
+  //               ),
+  //               SizedBox(
+  //                 height: 40,
+  //                 width: 180,
+  //                 child: ElevatedButton(
+  //                   onPressed: () {
+  //                     Navigator.pop(context);
+  //                   }, //ฟังชั่นการกดปุ่ม
+  //                   style: ElevatedButton.styleFrom(
+  //                     backgroundColor: Color.fromARGB(255, 248, 232, 207),
+  //                     shape: RoundedRectangleBorder(
+  //                       borderRadius: BorderRadius.circular(10.0),
+  //                     ),
+  //                   ),
+  //                   child: const Text(
+  //                     'Back',
+  //                     style: TextStyle(fontSize: 20),
+  //                   ),
+  //                 ),
+  //               ),
+  //               SizedBox(
+  //                 height: 1,
+  //               ),
+  //             ],
+  //           ),
+  //         )),
+  //   );
+  // }
 }
