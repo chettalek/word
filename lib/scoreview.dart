@@ -1,14 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/scoreclass.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class scorePage extends StatefulWidget {
-  const scorePage({super.key});
-
   @override
   State<scorePage> createState() => _scorePageState();
+
+  const scorePage({super.key});
 }
 
 class _scorePageState extends State<scorePage> {
+  String Fullname = "";
+  void getname() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      Fullname = prefs.getString('name') ?? "";
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getname();
+  }
+
   //แสดงข้อมูล
   @override
   Widget build(BuildContext context) {

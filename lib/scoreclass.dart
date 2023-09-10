@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class scoreclassPage extends StatefulWidget {
   @override
@@ -35,13 +36,25 @@ class _scoreclassState extends State<scoreclassPage> {
     }
   }
 
+  String Fullname = "";
+  getname() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      Fullname = prefs.getString('email') ?? "";
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getscore().then((value) {
-      setState(() {
-        isloading = false;
+    getname().then((val) {
+      print(Fullname);
+      getscore().then((value) {
+        setState(() {
+          isloading = false;
+        });
       });
     });
   }
@@ -99,19 +112,27 @@ class _scoreclassState extends State<scoreclassPage> {
               SizedBox(
                 height: 30,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('อันดับ'),
-                  SizedBox(
-                    width: 70,
-                  ),
-                  Text('ชื่อ'),
-                  SizedBox(
-                    width: 120,
-                  ),
-                  Text('จำนวนข้อที่ถูก'),
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: Text(
+                      'อันดับ',
+                    )),
+                    Expanded(
+                        flex: 2,
+                        child: Text(
+                          '     ชื่อ',
+                          // textAlign: TextAlign.center,
+                        )),
+                    Expanded(
+                        child: Text(
+                      'จำนวนข้อที่ถูก',
+                      textAlign: TextAlign.center,
+                    )),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 5,
@@ -130,7 +151,10 @@ class _scoreclassState extends State<scoreclassPage> {
                                 height: 50,
                                 width: 350,
                                 decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 255, 200, 134),
+                                    color: (score[index]["userName"] ==
+                                            Fullname)
+                                        ? Colors.green[200]
+                                        : Color.fromARGB(255, 255, 200, 134),
                                     borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(10),
                                         bottomRight: Radius.circular(10),
@@ -138,32 +162,40 @@ class _scoreclassState extends State<scoreclassPage> {
                                         topRight: Radius.circular(10))),
                                 child: Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 35, right: 40),
+                                      left: 20, right: 20),
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        '${index + 1}',
-                                        style: TextStyle(fontSize: 18),
+                                      Expanded(
+                                        child: Text(
+                                          '${index + 1}',
+                                          style: TextStyle(fontSize: 18),
+                                        ),
                                       ),
-                                      Text(
-                                        '${score[index]["fullname"]}',
-                                        style: TextStyle(fontSize: 18),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          '${score[index]["fullname"]}',
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(fontSize: 18),
+                                        ),
                                       ),
-                                      Text(
-                                        (widget.classno == 1)
-                                            ? '${score[index]["score_1"]}'
-                                            : (widget.classno == 2)
-                                                ? '${score[index]["score_2"]}'
-                                                : (widget.classno == 3)
-                                                    ? '${score[index]["score_3"]}'
-                                                    : (widget.classno == 4)
-                                                        ? '${score[index]["score_4"]}'
-                                                        : (widget.classno == 5)
-                                                            ? '${score[index]["score_5"]}'
-                                                            : '${score[index]["score_6"]}',
-                                        style: TextStyle(fontSize: 18),
+                                      Expanded(
+                                        child: Text(
+                                          (widget.classno == 1)
+                                              ? '${score[index]["score_1"]}'
+                                              : (widget.classno == 2)
+                                                  ? '${score[index]["score_2"]}'
+                                                  : (widget.classno == 3)
+                                                      ? '${score[index]["score_3"]}'
+                                                      : (widget.classno == 4)
+                                                          ? '${score[index]["score_4"]}'
+                                                          : (widget.classno ==
+                                                                  5)
+                                                              ? '${score[index]["score_5"]}'
+                                                              : '${score[index]["score_6"]}',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 18),
+                                        ),
                                       )
                                     ],
                                   ),

@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 
 class questionPage extends StatefulWidget {
   @override
@@ -25,6 +27,9 @@ class _questionPageState extends State<questionPage> {
   String ans3 = "";
   String ans4 = "";
   String anstrue = "";
+  SpeechToText _speechToText = SpeechToText();
+  bool _speechEnabled = false;
+  String _lastWords = '';
 
   bool isloading = true;
   FlutterTts ftts = FlutterTts();
@@ -56,10 +61,16 @@ class _questionPageState extends State<questionPage> {
     }
   }
 
+  void _initSpeech() async {
+    _speechEnabled = await _speechToText.initialize();
+    setState(() {});
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _initSpeech();
     getquestion(widget.chap, widget.chap_cur).then((value) {
       setState(() {
         isloading = false;
@@ -221,7 +232,7 @@ class _questionPageState extends State<questionPage> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              //กดคำตอบ
+                              //กดคำตอบ5
                             },
                             child: Container(
                                 height: 45,
@@ -313,10 +324,14 @@ class _questionPageState extends State<questionPage> {
                           SizedBox(
                             height: 10,
                           ),
-                          Text('cat'),
                           IconButton(
-                            iconSize: 35,
-                            onPressed: () {},
+                            iconSize: 40,
+                            onPressed: () {
+                              setState(() {
+                                _lastWords = "";
+                              });
+                              speechtotext();
+                            },
                             icon: Icon(Icons.mic),
                           ),
                         ],
@@ -330,6 +345,7 @@ class _questionPageState extends State<questionPage> {
   void showPopup(istrue) {
     showDialog<String>(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) => AlertDialog(
           backgroundColor: Color.fromARGB(255, 255, 192, 91),
           content: SingleChildScrollView(
@@ -341,6 +357,16 @@ class _questionPageState extends State<questionPage> {
                         'assets/images/incorrect.png',
                         height: 130,
                       ),
+                SizedBox(
+                  height: 15,
+                ),
+                (istrue == false)
+                    ? Text(
+                        'คำตอบที่ถูกคือ\n"${anstrue}"',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 25, color: Colors.white),
+                      )
+                    : Container(),
                 SizedBox(
                   height: 15,
                 ),
@@ -364,26 +390,135 @@ class _questionPageState extends State<questionPage> {
                 SizedBox(
                   height: 8,
                 ),
-                SizedBox(
-                  height: 40,
-                  width: 180,
-                  child: ElevatedButton(
-                    onPressed: () {}, //ฟังชั่นการกดปุ่ม
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 248, 232, 207),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                    child: const Text(
-                      'Back to menu',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
-                ),
               ],
             ),
           )),
+    );
+  }
+
+  void speechtotext() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) =>
+          StatefulBuilder(builder: (context, myState) {
+        void _startListening() async {
+          await _speechToText.listen(
+              onResult: (SpeechRecognitionResult result) {
+            myState(() {
+              _lastWords = result.recognizedWords.toLowerCase();
+
+              print(_lastWords);
+            });
+          });
+        }
+
+        void _stopListening() async {
+          await _speechToText.stop();
+          myState(() {});
+        }
+
+        return AlertDialog(
+            backgroundColor: Color.fromARGB(255, 255, 192, 91),
+            content: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    height: 100,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Center(
+                        child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              '$_lastWords',
+                              style: TextStyle(fontSize: 25),
+                            ),
+                          ),
+                          IconButton(
+                            iconSize: 40,
+                            onPressed: () {
+                              _speechToText.isNotListening
+                                  ? _startListening()
+                                  : _stopListening();
+                              myState(() {});
+                            },
+                            icon: Icon(_speechToText.isNotListening
+                                ? Icons.mic_off
+                                : Icons.mic),
+                          ),
+                        ],
+                      ),
+                    )),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          height: 40,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if (_lastWords == anstrue) {
+                                Navigator.pop(context);
+                                showPopup(true);
+                              } else {
+                                Navigator.pop(context);
+
+                                showPopup(false);
+                              }
+                            }, //ฟังชั่นการกดปุ่ม
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Color.fromARGB(255, 248, 232, 207),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                            child: const Text(
+                              'OK',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: SizedBox(
+                          height: 40,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            }, //ฟังชั่นการกดปุ่ม
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Color.fromARGB(255, 248, 232, 207),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                            child: const Text(
+                              'Cancle',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ));
+      }),
     );
   }
 

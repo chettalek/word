@@ -8,10 +8,12 @@ import 'package:flutter_application_1/category.dart';
 import 'package:flutter_application_1/question.dart';
 import 'package:flutter_application_1/scoreview.dart';
 import 'package:flutter_application_1/scoreclass.dart';
+import 'package:flutter_application_1/speechtotext.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 import 'package:flutter_application_1/about.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(

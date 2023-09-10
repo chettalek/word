@@ -31,15 +31,15 @@ class _signinPageState extends State<signinPage> {
         GoogleSignInAuthentication userAuth =
             await googleSignInAccount.authentication;
 
-        print(googleSignInAccount.email);
-        login(googleSignInAccount.email);
+        print(googleSignInAccount);
+        login(googleSignInAccount.email, googleSignInAccount.photoUrl);
       }
     } catch (e) {
       print(e);
     }
   }
 
-  Future login(email) async {
+  Future login(email, pic) async {
     try {
       var response = await http.get(
         Uri.parse(
@@ -53,10 +53,11 @@ class _signinPageState extends State<signinPage> {
         var post = json.decode(response.body);
         print(post);
         if (post["status"] == true) {
-          if (post["name"] != "" &&post["name"] != null) {
+          if (post["name"] != "" && post["name"] != null) {
             final SharedPreferences prefs =
                 await SharedPreferences.getInstance();
             await prefs.setString('email', email);
+            await prefs.setString('pic', pic);
             await prefs.setString('name', post["name"]);
             Navigator.pushAndRemoveUntil(
                 context,
@@ -65,7 +66,10 @@ class _signinPageState extends State<signinPage> {
           } else {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: ((context) => namePage(email: email,))),
+              MaterialPageRoute(
+                  builder: ((context) => namePage(
+                        email: email,
+                      ))),
             );
           }
         }

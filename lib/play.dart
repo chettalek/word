@@ -17,11 +17,13 @@ class playPage extends StatefulWidget {
 
 class _playPageState extends State<playPage> {
   String Fullname = "";
+  String pic = "";
   void getname() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     setState(() {
       Fullname = prefs.getString('name') ?? "";
+      pic = prefs.getString("pic") ?? "";
     });
   }
 
@@ -37,166 +39,191 @@ class _playPageState extends State<playPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 248, 232, 207),
-        body: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image.asset('assets/images/WORD.png'),
-              Text('Welcome $Fullname'),
-              Column(
-                children: [
-                  SizedBox(
-                    height: 40,
-                    width: 160,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => categoryPage()));
-                      }, //ฟังชั่นการกดปุ่ม
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 248, 185, 103),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
+        body: SafeArea(
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset('assets/images/WORD.png'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    (pic == "")
+                        ? Container()
+                        : Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Image.network(
+                                pic,
+                                height: 40,
+                              ),
+                            ),
+                          ),
+                    Text(
+                      'Welcome, $Fullname',
+                      style: TextStyle(color: Colors.amber[900], fontSize: 20),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      width: 160,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => categoryPage()));
+                        }, //ฟังชั่นการกดปุ่ม
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromARGB(255, 248, 185, 103),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        child: const Text(
+                          'Play',
+                          style: TextStyle(fontSize: 25),
                         ),
                       ),
-                      child: const Text(
-                        'Play',
-                        style: TextStyle(fontSize: 25),
-                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    height: 40,
-                    width: 160,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        soundCheck();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 248, 185, 103),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: 40,
+                      width: 160,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          soundCheck();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromARGB(255, 248, 185, 103),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        child: const Text(
+                          'Option',
+                          style: TextStyle(fontSize: 25),
                         ),
                       ),
-                      child: const Text(
-                        'Option',
-                        style: TextStyle(fontSize: 25),
-                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    height: 40,
-                    width: 160,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        //showscore();
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => scorePage()));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 248, 185, 103),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: 40,
+                      width: 160,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          //showscore();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => scorePage()));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromARGB(255, 248, 185, 103),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        child: const Text(
+                          'Score',
+                          style: TextStyle(fontSize: 25),
                         ),
                       ),
-                      child: const Text(
-                        'Score',
-                        style: TextStyle(fontSize: 25),
-                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    height: 40,
-                    width: 160,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        howtoplay();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 248, 185, 103),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: 40,
+                      width: 160,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          howtoplay();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromARGB(255, 248, 185, 103),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        child: const Text(
+                          'How to play',
+                          style: TextStyle(fontSize: 24),
                         ),
                       ),
-                      child: const Text(
-                        'How to play',
-                        style: TextStyle(fontSize: 24),
-                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    height: 40,
-                    width: 160,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => aboutPage()));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 248, 185, 103),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: 40,
+                      width: 160,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => aboutPage()));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromARGB(255, 248, 185, 103),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        child: const Text(
+                          'About',
+                          style: TextStyle(fontSize: 24),
                         ),
                       ),
-                      child: const Text(
-                        'About',
-                        style: TextStyle(fontSize: 24),
-                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(width: 8),
-                  SizedBox(
-                    height: 40,
-                    width: 160,
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        final SharedPreferences prefs =
-                            await SharedPreferences.getInstance();
-                        await prefs.clear();
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) => signinPage())),
-                            (route) => false);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 255, 37, 37),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(width: 8),
+                    SizedBox(
+                      height: 40,
+                      width: 160,
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          final SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.clear();
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) => signinPage())),
+                              (route) => false);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromARGB(255, 255, 37, 37),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        child: const Text(
+                          'Logout',
+                          style: TextStyle(fontSize: 25),
                         ),
                       ),
-                      child: const Text(
-                        'Logout',
-                        style: TextStyle(fontSize: 25),
-                      ),
                     ),
-                  ),
-                ],
-              ),
-              Image.asset('assets/images/homestu.png'),
-            ],
+                  ],
+                ),
+                Image.asset('assets/images/homestu.png'),
+              ],
+            ),
           ),
         ));
   }
