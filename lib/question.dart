@@ -352,7 +352,10 @@ class _questionPageState extends State<questionPage> {
             child: Column(
               children: [
                 (istrue == true)
-                    ? Image.asset('assets/images/victory.png')
+                    ? Image.asset(
+                        'assets/images/victory.png',
+                        height: 130,
+                      )
                     : Image.asset(
                         'assets/images/incorrect.png',
                         height: 130,
