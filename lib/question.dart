@@ -10,6 +10,7 @@ import 'package:speech_to_text/speech_to_text.dart';
 class questionPage extends StatefulWidget {
   @override
   State<questionPage> createState() => _questionPageState();
+  final user;
   final row;
   final chap;
   final chap_cur;
@@ -17,7 +18,8 @@ class questionPage extends StatefulWidget {
       {super.key,
       required this.row,
       required this.chap,
-      required this.chap_cur});
+      required this.chap_cur,
+      required this.user});
 }
 
 class _questionPageState extends State<questionPage> {
@@ -55,6 +57,25 @@ class _questionPageState extends State<questionPage> {
           ans4 = post[0]["answer4"];
           anstrue = post[0]["answer_true"];
         });
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future updatescore(classid, no, score) async {
+    try {
+      var response = await http.get(
+        Uri.parse(
+            'https://apiword.learnlangc.com/updatescore.php?username=${widget.user}&id_class=$classid&score=$score&no=$no'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        var post = json.decode(response.body);
+        print(post);
       }
     } catch (error) {
       print(error);
@@ -232,6 +253,11 @@ class _questionPageState extends State<questionPage> {
                           ),
                           GestureDetector(
                             onTap: () {
+                              if (ans2.split("||")[0] == anstrue) {
+                                showPopup(true);
+                              } else {
+                                showPopup(false);
+                              }
                               //กดคำตอบ5
                             },
                             child: Container(
@@ -263,7 +289,13 @@ class _questionPageState extends State<questionPage> {
                             height: 10,
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              if (ans3.split("||")[0] == anstrue) {
+                                showPopup(true);
+                              } else {
+                                showPopup(false);
+                              }
+                            },
                             child: Container(
                                 height: 45,
                                 width: 300,
@@ -294,6 +326,11 @@ class _questionPageState extends State<questionPage> {
                           ),
                           GestureDetector(
                             onTap: () {
+                              if (ans4.split("||")[0] == anstrue) {
+                                showPopup(true);
+                              } else {
+                                showPopup(false);
+                              }
                               //กดคำตอบ
                             },
                             child: Container(
@@ -377,7 +414,53 @@ class _questionPageState extends State<questionPage> {
                   height: 40,
                   width: 133,
                   child: ElevatedButton(
-                    onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                    onPressed: () {
+                      if (widget.chap_cur == widget.row) {
+                        if (istrue == true) {
+                          updatescore(widget.chap, widget.chap_cur +1, 1)
+                              .then((value) {
+                            Navigator.pop(context);
+                            finish();
+                          });
+                        } else {
+                          updatescore(widget.chap, widget.chap_cur +1, 0)
+                              .then((value) {
+                            Navigator.pop(context);
+                            finish();
+                          });
+                        }
+                      } else {
+                        if (istrue == true) {
+                          updatescore(widget.chap, widget.chap_cur + 1, 1)
+                              .then((value) {
+                            Navigator.pop(context);
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => questionPage(
+                                          row: widget.row,
+                                          chap: widget.chap,
+                                          chap_cur: widget.chap_cur + 1,
+                                          user: widget.user,
+                                        )));
+                          });
+                        } else {
+                          updatescore(widget.chap, widget.chap_cur + 1, 0)
+                              .then((value) {
+                            Navigator.pop(context);
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => questionPage(
+                                          row: widget.row,
+                                          chap: widget.chap,
+                                          chap_cur: widget.chap_cur + 1,
+                                          user: widget.user,
+                                        )));
+                          });
+                        }
+                      }
+                    }, //ฟังชั่นการกดปุ่ม
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(255, 248, 232, 207),
                       shape: RoundedRectangleBorder(
@@ -690,6 +773,63 @@ class _questionPageState extends State<questionPage> {
                 ),
                 SizedBox(
                   height: 15,
+                ),
+              ],
+            ),
+          )),
+    );
+  }
+
+  void finish() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+          backgroundColor: Color.fromARGB(255, 255, 192, 91),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'คุณทำครบทุกข้อแล้ว',
+                  style: TextStyle(fontSize: 28),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(
+                    'คะแนนที่ได้คือ ',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ]),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        height: 40,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          }, //ฟังชั่นการกดปุ่ม
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromARGB(255, 248, 232, 207),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                          child: const Text(
+                            'Ok',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

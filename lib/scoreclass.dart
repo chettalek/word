@@ -9,7 +9,8 @@ class scoreclassPage extends StatefulWidget {
   @override
   State<scoreclassPage> createState() => _scoreclassState();
   final int classno;
-  const scoreclassPage({super.key, required this.classno});
+  final int row;
+  const scoreclassPage({super.key, required this.classno, required this.row});
 }
 
 class _scoreclassState extends State<scoreclassPage> {
@@ -27,9 +28,17 @@ class _scoreclassState extends State<scoreclassPage> {
       if (response.statusCode == 200) {
         var post = json.decode(response.body);
         print(post);
-        setState(() {
-          score = post;
-        });
+        List list = post;
+        print(list.length);
+        for (var i = 0; list.length > i; i++) {
+          if (int.parse(list[i]['chap_${widget.classno}']) > widget.row) {
+            score.add(list[i]);
+          }
+          print(score);
+        }
+        // setState(() {
+        //   score = post;
+        // });
       }
     } catch (error) {
       print(error);
@@ -182,17 +191,17 @@ class _scoreclassState extends State<scoreclassPage> {
                                       Expanded(
                                         child: Text(
                                           (widget.classno == 1)
-                                              ? '${score[index]["score_1"]}'
+                                              ? '${score[index]["score_1"]}/${widget.row}'
                                               : (widget.classno == 2)
-                                                  ? '${score[index]["score_2"]}'
+                                                  ? '${score[index]["score_2"]}/${widget.row}'
                                                   : (widget.classno == 3)
-                                                      ? '${score[index]["score_3"]}'
+                                                      ? '${score[index]["score_3"]}/${widget.row}'
                                                       : (widget.classno == 4)
-                                                          ? '${score[index]["score_4"]}'
+                                                          ? '${score[index]["score_4"]}/${widget.row}'
                                                           : (widget.classno ==
                                                                   5)
-                                                              ? '${score[index]["score_5"]}'
-                                                              : '${score[index]["score_6"]}',
+                                                              ? '${score[index]["score_5"]}/${widget.row}'
+                                                              : '${score[index]["score_6"]}/${widget.row}',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(fontSize: 18),
                                         ),

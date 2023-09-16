@@ -136,16 +136,23 @@ class _categoryPageState extends State<categoryPage> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
-                    getrow(1).then((value) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => questionPage(
-                                    row: row,
-                                    chap: 1,
-                                    chap_cur: chap1,
-                                  )));
-                    });
+                    getuser(user).then(((value) {
+                      getrow(1).then((value) {
+                        if (chap1 > row) {
+                          replay();
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => questionPage(
+                                        row: row,
+                                        chap: 1,
+                                        chap_cur: chap1,
+                                        user: user,
+                                      )));
+                        }
+                      });
+                    }));
                   }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
@@ -248,5 +255,84 @@ class _categoryPageState extends State<categoryPage> {
             ],
           ),
         ));
+  }
+
+  void replay() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+          backgroundColor: Color.fromARGB(255, 255, 192, 91),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'คุณทำครบทุกข้อแล้ว',
+                  style: TextStyle(fontSize: 28),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(
+                    'ต้องการเริ่มทำใหม่หรือไม่',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ]),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        height: 40,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }, //ฟังชั่นการกดปุ่ม
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromARGB(255, 248, 232, 207),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                          child: const Text(
+                            'Confirm',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Expanded(
+                      child: SizedBox(
+                        height: 40,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }, //ฟังชั่นการกดปุ่ม
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromARGB(255, 248, 232, 207),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                          child: const Text(
+                            'Back',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          )),
+    );
   }
 }

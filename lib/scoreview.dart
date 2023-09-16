@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/scoreclass.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class scorePage extends StatefulWidget {
   @override
@@ -11,12 +14,35 @@ class scorePage extends StatefulWidget {
 
 class _scorePageState extends State<scorePage> {
   String Fullname = "";
+  int row = 0;
   void getname() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     setState(() {
       Fullname = prefs.getString('name') ?? "";
     });
+  }
+
+  Future getrow(classid) async {
+    try {
+      var response = await http.get(
+        Uri.parse(
+            'https://apiword.learnlangc.com/getrow.php?id_class=$classid'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        var post = json.decode(response.body);
+        print(post);
+        setState(() {
+          row = post["row"] ?? 0;
+        });
+      }
+    } catch (error) {
+      print(error);
+    }
   }
 
   @override
@@ -71,12 +97,15 @@ class _scorePageState extends State<scorePage> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => scoreclassPage(
-                                  classno: 1,
-                                )));
+                    getrow(1).then((value) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => scoreclassPage(
+                                row: row,
+                                    classno: 1,
+                                  )));
+                    });
                   }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
@@ -95,12 +124,15 @@ class _scorePageState extends State<scorePage> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => scoreclassPage(
-                                  classno: 2,
-                                )));
+                    getrow(2).then((value) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => scoreclassPage(
+                                row: row,
+                                    classno: 2,
+                                  )));
+                    });
                   }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
@@ -119,12 +151,15 @@ class _scorePageState extends State<scorePage> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => scoreclassPage(
-                                  classno: 3,
-                                )));
+                    getrow(3).then((value) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => scoreclassPage(
+                                row: row,
+                                    classno: 3,
+                                  )));
+                    });
                   }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
@@ -143,12 +178,15 @@ class _scorePageState extends State<scorePage> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => scoreclassPage(
-                                  classno: 4,
-                                )));
+                    getrow(4).then((value) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => scoreclassPage(
+                                row: row,
+                                    classno: 4,
+                                  )));
+                    });
                   }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
@@ -167,12 +205,15 @@ class _scorePageState extends State<scorePage> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => scoreclassPage(
-                                  classno: 5,
-                                )));
+                    getrow(5).then((value) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => scoreclassPage(
+                                row: row,
+                                    classno: 5,
+                                  )));
+                    });
                   }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
@@ -191,12 +232,15 @@ class _scorePageState extends State<scorePage> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => scoreclassPage(
-                                  classno: 6,
-                                )));
+                    getrow(6).then((value) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => scoreclassPage(
+                                row: row,
+                                    classno: 6,
+                                  )));
+                    });
                   }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
