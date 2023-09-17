@@ -33,7 +33,7 @@ class _aboutPageState extends State<aboutPage> {
                     ),
                   ),
                   child: const Text(
-                    'ย้อนกลับ',
+                    'Back',
                     style: TextStyle(fontSize: 25),
                   ),
                 ),

@@ -92,7 +92,7 @@ class _scoreclassState extends State<scoreclassPage> {
                     ),
                   ),
                   child: const Text(
-                    'ย้อนกลับ',
+                    'Back',
                     style: TextStyle(fontSize: 25),
                   ),
                 ),

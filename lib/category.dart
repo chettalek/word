@@ -110,7 +110,7 @@ class _categoryPageState extends State<categoryPage> {
                     ),
                   ),
                   child: const Text(
-                    'ย้อนกลับ',
+                    'Back',
                     style: TextStyle(fontSize: 25),
                   ),
                 ),

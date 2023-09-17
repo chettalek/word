@@ -90,7 +90,7 @@ class _namePageState extends State<namePage> {
                     children: [
                       SizedBox(
                         height: 40,
-                        width: 120,
+                        width: 140,
                         child: ElevatedButton(
                           onPressed: () {
                             if (yourname.text.length > 8) {
@@ -109,7 +109,7 @@ class _namePageState extends State<namePage> {
                             ),
                           ),
                           child: const Text(
-                            'ยืนยัน',
+                            'Confirm',
                             style: TextStyle(fontSize: 25),
                           ),
                         ),
@@ -131,7 +131,7 @@ class _namePageState extends State<namePage> {
                             ),
                           ),
                           child: const Text(
-                            'ย้อนกลับ',
+                            'Back',
                             style: TextStyle(fontSize: 25),
                           ),
                         ),

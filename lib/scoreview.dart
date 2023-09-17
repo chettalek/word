@@ -76,7 +76,7 @@ class _scorePageState extends State<scorePage> {
                     ),
                   ),
                   child: const Text(
-                    'ย้อนกลับ',
+                    'Back',
                     style: TextStyle(fontSize: 25),
                   ),
                 ),
@@ -102,7 +102,7 @@ class _scorePageState extends State<scorePage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => scoreclassPage(
-                                row: row,
+                                    row: row,
                                     classno: 1,
                                   )));
                     });
@@ -129,7 +129,7 @@ class _scorePageState extends State<scorePage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => scoreclassPage(
-                                row: row,
+                                    row: row,
                                     classno: 2,
                                   )));
                     });
@@ -156,7 +156,7 @@ class _scorePageState extends State<scorePage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => scoreclassPage(
-                                row: row,
+                                    row: row,
                                     classno: 3,
                                   )));
                     });
@@ -183,7 +183,7 @@ class _scorePageState extends State<scorePage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => scoreclassPage(
-                                row: row,
+                                    row: row,
                                     classno: 4,
                                   )));
                     });
@@ -210,7 +210,7 @@ class _scorePageState extends State<scorePage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => scoreclassPage(
-                                row: row,
+                                    row: row,
                                     classno: 5,
                                   )));
                     });
@@ -237,7 +237,7 @@ class _scorePageState extends State<scorePage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => scoreclassPage(
-                                row: row,
+                                    row: row,
                                     classno: 6,
                                   )));
                     });
