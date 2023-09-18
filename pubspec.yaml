@@ -45,6 +45,7 @@ dependencies:
   shared_preferences: ^2.2.0
   flutter_tts: ^3.7.0
   speech_to_text: ^6.3.0
+  audioplayers: ^5.1.0
 
 flutter_icons:
   android: true
@@ -79,6 +80,8 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/images/
+    - assets/ck.mp3
+    - assets/bg.mp3
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

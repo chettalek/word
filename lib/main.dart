@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/play.dart';
@@ -24,6 +25,16 @@ void main() async {
   runApp(MyApp(
     email: email ?? "",
   ));
+  // AudioPlayer().stop();
+  // AudioPlayer().play(AssetSource('bg.mp3'));
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   if (state == AppLifecycleState.paused) {
+  //     print("stop");
+  //     //stop your audio player
+  //   } else {
+  //     print(state.toString());
+  //   }
+  // }
 }
 
 //สร้าง Widget

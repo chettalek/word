@@ -15,7 +15,7 @@ class scorePage extends StatefulWidget {
 class _scorePageState extends State<scorePage> {
   String Fullname = "";
   int row = 0;
-  void getname() async {
+  getname() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     setState(() {
@@ -49,7 +49,10 @@ class _scorePageState extends State<scorePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getname();
+    getname().then((value){
+      totalscore();
+    });
+    
   }
 
   //แสดงข้อมูล

@@ -77,6 +77,26 @@ class _categoryPageState extends State<categoryPage> {
     }
   }
 
+  Future reset(classid) async {
+    try {
+      var response = await http.get(
+        Uri.parse(
+            'https://apiword.learnlangc.com/resetscore.php?id_class=$classid&username=$user'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        var post = json.decode(response.body);
+        print(post);
+        return post['status'];
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -139,7 +159,7 @@ class _categoryPageState extends State<categoryPage> {
                     getuser(user).then(((value) {
                       getrow(1).then((value) {
                         if (chap1 > row) {
-                          replay();
+                          replay(1);
                         } else {
                           Navigator.push(
                               context,
@@ -257,7 +277,7 @@ class _categoryPageState extends State<categoryPage> {
         ));
   }
 
-  void replay() {
+  void replay(id) {
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -290,7 +310,10 @@ class _categoryPageState extends State<categoryPage> {
                         height: 40,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            reset(id).then((value) {
+                              Navigator.pop(context);
+                              replaysucces();
+                            });
                           }, //ฟังชั่นการกดปุ่ม
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color.fromARGB(255, 248, 232, 207),
@@ -323,6 +346,53 @@ class _categoryPageState extends State<categoryPage> {
                           ),
                           child: const Text(
                             'Back',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          )),
+    );
+  }
+
+  void replaysucces() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+          backgroundColor: Color.fromARGB(255, 255, 192, 91),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'รีเซ็ตเรียบร้อย',
+                  style: TextStyle(fontSize: 28),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        height: 40,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }, //ฟังชั่นการกดปุ่ม
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromARGB(255, 248, 232, 207),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                          child: const Text(
+                            'Ok',
                             style: TextStyle(fontSize: 20),
                           ),
                         ),

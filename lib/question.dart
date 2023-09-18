@@ -23,6 +23,7 @@ class questionPage extends StatefulWidget {
 }
 
 class _questionPageState extends State<questionPage> {
+  String score = "";
   String pic = "";
   String ans1 = "";
   String ans2 = "";
@@ -75,7 +76,12 @@ class _questionPageState extends State<questionPage> {
 
       if (response.statusCode == 200) {
         var post = json.decode(response.body);
+        setState(() {
+          score = post['score'].toString();
+          print(score);
+        });
         print(post);
+        return post['score'].toString();
       }
     } catch (error) {
       print(error);
@@ -240,7 +246,7 @@ class _questionPageState extends State<questionPage> {
                                           width: 25,
                                         ),
                                         Text(
-                                          ans1.replaceAll("||", " "),
+                                          '${ans1.split("||")[0]} (${ans1.split("||")[1]}) แปลว่า ${ans1.split("||")[2]}',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                       ],
@@ -277,7 +283,7 @@ class _questionPageState extends State<questionPage> {
                                           width: 25,
                                         ),
                                         Text(
-                                          ans2.replaceAll("||", " "),
+                                          '${ans2.split("||")[0]} (${ans2.split("||")[1]}) แปลว่า ${ans2.split("||")[2]}',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                       ],
@@ -313,7 +319,7 @@ class _questionPageState extends State<questionPage> {
                                           width: 25,
                                         ),
                                         Text(
-                                          ans3.replaceAll("||", " "),
+                                          '${ans3.split("||")[0]} (${ans3.split("||")[1]}) แปลว่า ${ans3.split("||")[2]}',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                       ],
@@ -350,7 +356,7 @@ class _questionPageState extends State<questionPage> {
                                           width: 25,
                                         ),
                                         Text(
-                                          ans4.replaceAll("||", " "),
+                                          '${ans4.split("||")[0]} (${ans4.split("||")[1]}) แปลว่า ${ans4.split("||")[2]}',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                       ],
@@ -420,13 +426,13 @@ class _questionPageState extends State<questionPage> {
                           updatescore(widget.chap, widget.chap_cur + 1, 1)
                               .then((value) {
                             Navigator.pop(context);
-                            finish();
+                            finish(value);
                           });
                         } else {
                           updatescore(widget.chap, widget.chap_cur + 1, 0)
                               .then((value) {
                             Navigator.pop(context);
-                            finish();
+                            finish(value);
                           });
                         }
                       } else {
@@ -780,7 +786,7 @@ class _questionPageState extends State<questionPage> {
     );
   }
 
-  void finish() {
+  void finish(sc) {
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -799,7 +805,7 @@ class _questionPageState extends State<questionPage> {
                 ),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text(
-                    'คะแนนที่ได้คือ ',
+                    'คะแนนที่ได้คือ $sc/${widget.row}',
                     style: TextStyle(fontSize: 18),
                   ),
                 ]),
