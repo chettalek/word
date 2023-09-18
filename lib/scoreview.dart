@@ -259,4 +259,56 @@ class _scorePageState extends State<scorePage> {
           ),
         ));
   }
+
+//...............................................................เพิ่มแจ้งเตือนเงื่อนไขการดูอันดับคะแนน
+  void totalscore() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+          backgroundColor: Color.fromARGB(255, 255, 192, 91),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'อันดับคะแนน',
+                  style: TextStyle(fontSize: 28),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(
+                    'อันดับคะแนนของผู้เล่นจะแสดงที่หน้าจอ ก็ต่อเมื่อตอบคำถามในบทนั้นๆ ครบทุกข้อ',
+                    style: TextStyle(fontSize: 14),
+                  ),
+                ]),
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 40,
+                  width: 180,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }, //ฟังชั่นการกดปุ่ม
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 248, 232, 207),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: const Text(
+                      'Ok',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )),
+    );
+  }
 }
