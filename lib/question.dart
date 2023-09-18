@@ -417,13 +417,13 @@ class _questionPageState extends State<questionPage> {
                     onPressed: () {
                       if (widget.chap_cur == widget.row) {
                         if (istrue == true) {
-                          updatescore(widget.chap, widget.chap_cur +1, 1)
+                          updatescore(widget.chap, widget.chap_cur + 1, 1)
                               .then((value) {
                             Navigator.pop(context);
                             finish();
                           });
                         } else {
-                          updatescore(widget.chap, widget.chap_cur +1, 0)
+                          updatescore(widget.chap, widget.chap_cur + 1, 0)
                               .then((value) {
                             Navigator.pop(context);
                             finish();
