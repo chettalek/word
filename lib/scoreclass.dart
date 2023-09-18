@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,6 +17,8 @@ class scoreclassPage extends StatefulWidget {
 class _scoreclassState extends State<scoreclassPage> {
   bool isloading = true;
   List score = [];
+  bool click = true;
+
   Future getscore() async {
     try {
       var response = await http.get(
@@ -51,6 +54,7 @@ class _scoreclassState extends State<scoreclassPage> {
 
     setState(() {
       Fullname = prefs.getString('email') ?? "";
+      click = prefs.getBool("click") ?? true;
     });
   }
 
@@ -83,6 +87,9 @@ class _scoreclassState extends State<scoreclassPage> {
                 width: 133,
                 child: ElevatedButton(
                   onPressed: () {
+                    (click == true)
+                        ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                        : null;
                     Navigator.pop(context);
                   }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(

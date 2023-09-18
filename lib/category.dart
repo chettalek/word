@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/question.dart';
 import 'package:http/http.dart' as http;
@@ -21,11 +22,14 @@ class _categoryPageState extends State<categoryPage> {
   int chap4 = 1;
   int chap5 = 1;
   int chap6 = 1;
+  bool click = true;
+
   getname() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     setState(() {
       user = prefs.getString('email') ?? "";
+      click = prefs.getBool("click") ?? true;
     });
   }
 
@@ -121,6 +125,9 @@ class _categoryPageState extends State<categoryPage> {
                 width: 133,
                 child: ElevatedButton(
                   onPressed: () {
+                    (click == true)
+                        ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                        : null;
                     Navigator.pop(context);
                   }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
@@ -156,6 +163,9 @@ class _categoryPageState extends State<categoryPage> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
+                    (click == true)
+                        ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                        : null;
                     getuser(user).then(((value) {
                       getrow(1).then((value) {
                         if (chap1 > row) {
@@ -190,7 +200,28 @@ class _categoryPageState extends State<categoryPage> {
                 height: 40,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                  onPressed: () {
+                    (click == true)
+                        ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                        : null;
+                    getuser(user).then(((value) {
+                      getrow(2).then((value) {
+                        if (chap2 > row) {
+                          replay(2);
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => questionPage(
+                                        row: row,
+                                        chap: 2,
+                                        chap_cur: chap2,
+                                        user: user,
+                                      ))); //.....................................................อันนี้ลองทำเอง ได้ แต่ไม่รู้ถูกไหม
+                        }
+                      });
+                    }));
+                  }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
                     shape: RoundedRectangleBorder(
@@ -207,7 +238,11 @@ class _categoryPageState extends State<categoryPage> {
                 height: 40,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                  onPressed: () {
+                    (click == true)
+                        ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                        : null;
+                  }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
                     shape: RoundedRectangleBorder(
@@ -224,7 +259,11 @@ class _categoryPageState extends State<categoryPage> {
                 height: 40,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                  onPressed: () {
+                    (click == true)
+                        ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                        : null;
+                  }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
                     shape: RoundedRectangleBorder(
@@ -241,7 +280,11 @@ class _categoryPageState extends State<categoryPage> {
                 height: 40,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                  onPressed: () {
+                    (click == true)
+                        ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                        : null;
+                  }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
                     shape: RoundedRectangleBorder(
@@ -258,7 +301,11 @@ class _categoryPageState extends State<categoryPage> {
                 height: 40,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {}, //ฟังชั่นการกดปุ่ม
+                  onPressed: () {
+                    (click == true)
+                        ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                        : null;
+                  }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
                     shape: RoundedRectangleBorder(
@@ -311,6 +358,10 @@ class _categoryPageState extends State<categoryPage> {
                         child: ElevatedButton(
                           onPressed: () {
                             reset(id).then((value) {
+                              (click == true)
+                                  ? AudioPlayer()
+                                      .play(AssetSource('music/ck.mp3'))
+                                  : null;
                               Navigator.pop(context);
                               replaysucces();
                             });
@@ -336,6 +387,10 @@ class _categoryPageState extends State<categoryPage> {
                         height: 40,
                         child: ElevatedButton(
                           onPressed: () {
+                            (click == true)
+                                ? AudioPlayer()
+                                    .play(AssetSource('music/ck.mp3'))
+                                : null;
                             Navigator.pop(context);
                           }, //ฟังชั่นการกดปุ่ม
                           style: ElevatedButton.styleFrom(
@@ -370,8 +425,8 @@ class _categoryPageState extends State<categoryPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'รีเซ็ตเรียบร้อย',
-                  style: TextStyle(fontSize: 28),
+                  'เรียบร้อย',
+                  style: TextStyle(fontSize: 25),
                 ),
                 SizedBox(
                   height: 20,
@@ -383,6 +438,10 @@ class _categoryPageState extends State<categoryPage> {
                         height: 40,
                         child: ElevatedButton(
                           onPressed: () {
+                            (click == true)
+                                ? AudioPlayer()
+                                    .play(AssetSource('music/ck.mp3'))
+                                : null;
                             Navigator.pop(context);
                           }, //ฟังชั่นการกดปุ่ม
                           style: ElevatedButton.styleFrom(

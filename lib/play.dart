@@ -81,7 +81,7 @@ class _playPageState extends State<playPage> {
                       child: ElevatedButton(
                         onPressed: () {
                           (click == true)
-                              ? AudioPlayer().play(AssetSource('ck.mp3'))
+                              ? AudioPlayer().play(AssetSource('music/ck.mp3'))
                               : null;
                           Navigator.push(
                               context,
@@ -108,6 +108,9 @@ class _playPageState extends State<playPage> {
                       width: 160,
                       child: ElevatedButton(
                         onPressed: () {
+                          (click == true)
+                              ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                              : null;
                           soundCheck();
                         },
                         style: ElevatedButton.styleFrom(
@@ -131,6 +134,9 @@ class _playPageState extends State<playPage> {
                       child: ElevatedButton(
                         onPressed: () {
                           //showscore();
+                          (click == true)
+                              ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                              : null;
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -156,6 +162,9 @@ class _playPageState extends State<playPage> {
                       width: 160,
                       child: ElevatedButton(
                         onPressed: () {
+                          (click == true)
+                              ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                              : null;
                           howtoplay();
                         },
                         style: ElevatedButton.styleFrom(
@@ -178,6 +187,9 @@ class _playPageState extends State<playPage> {
                       width: 160,
                       child: ElevatedButton(
                         onPressed: () {
+                          (click == true)
+                              ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                              : null;
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -207,6 +219,9 @@ class _playPageState extends State<playPage> {
                           final SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           await prefs.clear();
+                          (click == true)
+                              ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                              : null;
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
@@ -260,6 +275,10 @@ class _playPageState extends State<playPage> {
                               child: IconButton(
                                   iconSize: 30,
                                   onPressed: () async {
+                                    (click == true)
+                                        ? AudioPlayer()
+                                            .play(AssetSource('music/ck.mp3'))
+                                        : null;
                                     if (click == true) {
                                       final SharedPreferences prefs =
                                           await SharedPreferences.getInstance();
@@ -310,6 +329,10 @@ class _playPageState extends State<playPage> {
                           width: 180,
                           child: ElevatedButton(
                             onPressed: () {
+                              (click == true)
+                                  ? AudioPlayer()
+                                      .play(AssetSource('music/ck.mp3'))
+                                  : null;
                               Navigator.pop(context);
                             }, //ฟังชั่นการกดปุ่ม
                             style: ElevatedButton.styleFrom(
@@ -372,6 +395,9 @@ class _playPageState extends State<playPage> {
                   width: 180,
                   child: ElevatedButton(
                     onPressed: () {
+                      (click == true)
+                          ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                          : null;
                       Navigator.pop(context);
                     }, //ฟังชั่นการกดปุ่ม
                     style: ElevatedButton.styleFrom(

@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter_application_1/play.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -101,7 +103,18 @@ class _questionPageState extends State<questionPage> {
     getquestion(widget.chap, widget.chap_cur).then((value) {
       setState(() {
         isloading = false;
+        getname();
       });
+    });
+  }
+
+  bool click = true;
+
+  void getname() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      click = prefs.getBool("click") ?? true;
     });
   }
 
@@ -110,15 +123,13 @@ class _questionPageState extends State<questionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Color.fromARGB(255, 248, 185, 103),
           title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Row(
                 children: [
-                  SizedBox(
-                    width: 140,
-                  ),
                   Container(
                     height: 40,
                     width: 100,
@@ -135,6 +146,9 @@ class _questionPageState extends State<questionPage> {
                   IconButton(
                       iconSize: 40,
                       onPressed: () {
+                        (click == true)
+                            ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                            : null;
                         showSetting();
                       },
                       icon: Icon(Icons.settings)),
@@ -223,6 +237,10 @@ class _questionPageState extends State<questionPage> {
                           ),
                           GestureDetector(
                             onTap: () {
+                              (click == true)
+                                  ? AudioPlayer()
+                                      .play(AssetSource('music/ck.mp3'))
+                                  : null;
                               if (ans1.split("||")[0] == anstrue) {
                                 showPopup(true);
                               } else {
@@ -231,7 +249,7 @@ class _questionPageState extends State<questionPage> {
                             },
                             child: Container(
                                 height: 45,
-                                width: 300,
+                                width: 325,
                                 decoration: BoxDecoration(
                                     color: Color.fromARGB(255, 252, 223, 127),
                                     borderRadius:
@@ -247,7 +265,7 @@ class _questionPageState extends State<questionPage> {
                                         ),
                                         Text(
                                           '${ans1.split("||")[0]} (${ans1.split("||")[1]}) แปลว่า ${ans1.split("||")[2]}',
-                                          style: TextStyle(fontSize: 18),
+                                          style: TextStyle(fontSize: 16),
                                         ),
                                       ],
                                     ),
@@ -259,6 +277,10 @@ class _questionPageState extends State<questionPage> {
                           ),
                           GestureDetector(
                             onTap: () {
+                              (click == true)
+                                  ? AudioPlayer()
+                                      .play(AssetSource('music/ck.mp3'))
+                                  : null;
                               if (ans2.split("||")[0] == anstrue) {
                                 showPopup(true);
                               } else {
@@ -268,7 +290,7 @@ class _questionPageState extends State<questionPage> {
                             },
                             child: Container(
                                 height: 45,
-                                width: 300,
+                                width: 325,
                                 decoration: BoxDecoration(
                                     color: Color.fromARGB(255, 252, 223, 127),
                                     borderRadius:
@@ -284,7 +306,7 @@ class _questionPageState extends State<questionPage> {
                                         ),
                                         Text(
                                           '${ans2.split("||")[0]} (${ans2.split("||")[1]}) แปลว่า ${ans2.split("||")[2]}',
-                                          style: TextStyle(fontSize: 18),
+                                          style: TextStyle(fontSize: 16),
                                         ),
                                       ],
                                     ),
@@ -296,6 +318,10 @@ class _questionPageState extends State<questionPage> {
                           ),
                           GestureDetector(
                             onTap: () {
+                              (click == true)
+                                  ? AudioPlayer()
+                                      .play(AssetSource('music/ck.mp3'))
+                                  : null;
                               if (ans3.split("||")[0] == anstrue) {
                                 showPopup(true);
                               } else {
@@ -304,7 +330,7 @@ class _questionPageState extends State<questionPage> {
                             },
                             child: Container(
                                 height: 45,
-                                width: 300,
+                                width: 325,
                                 decoration: BoxDecoration(
                                     color: Color.fromARGB(255, 252, 223, 127),
                                     borderRadius:
@@ -320,7 +346,7 @@ class _questionPageState extends State<questionPage> {
                                         ),
                                         Text(
                                           '${ans3.split("||")[0]} (${ans3.split("||")[1]}) แปลว่า ${ans3.split("||")[2]}',
-                                          style: TextStyle(fontSize: 18),
+                                          style: TextStyle(fontSize: 16),
                                         ),
                                       ],
                                     ),
@@ -332,6 +358,10 @@ class _questionPageState extends State<questionPage> {
                           ),
                           GestureDetector(
                             onTap: () {
+                              (click == true)
+                                  ? AudioPlayer()
+                                      .play(AssetSource('music/ck.mp3'))
+                                  : null;
                               if (ans4.split("||")[0] == anstrue) {
                                 showPopup(true);
                               } else {
@@ -341,7 +371,7 @@ class _questionPageState extends State<questionPage> {
                             },
                             child: Container(
                                 height: 45,
-                                width: 300,
+                                width: 325,
                                 decoration: BoxDecoration(
                                     color: Color.fromARGB(255, 252, 223, 127),
                                     borderRadius:
@@ -357,7 +387,7 @@ class _questionPageState extends State<questionPage> {
                                         ),
                                         Text(
                                           '${ans4.split("||")[0]} (${ans4.split("||")[1]}) แปลว่า ${ans4.split("||")[2]}',
-                                          style: TextStyle(fontSize: 18),
+                                          style: TextStyle(fontSize: 16),
                                         ),
                                       ],
                                     ),
@@ -421,6 +451,9 @@ class _questionPageState extends State<questionPage> {
                   width: 133,
                   child: ElevatedButton(
                     onPressed: () {
+                      (click == true)
+                          ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                          : null;
                       if (widget.chap_cur == widget.row) {
                         if (istrue == true) {
                           updatescore(widget.chap, widget.chap_cur + 1, 1)
@@ -629,6 +662,9 @@ class _questionPageState extends State<questionPage> {
                     IconButton(
                         iconSize: 30,
                         onPressed: () {
+                          (click == true)
+                              ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                              : null;
                           Navigator.pop(context);
                         },
                         icon: Icon(
@@ -643,6 +679,9 @@ class _questionPageState extends State<questionPage> {
                   width: 180,
                   child: ElevatedButton(
                     onPressed: () {
+                      (click == true)
+                          ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                          : null;
                       Navigator.pop(context);
                     }, //ฟังชั่นการกดปุ่ม กลับหน้าเดิม
                     style: ElevatedButton.styleFrom(
@@ -660,13 +699,38 @@ class _questionPageState extends State<questionPage> {
                 SizedBox(
                   height: 15,
                 ),
+                // SizedBox(
+                //   height: 40,
+                //   width: 180,
+                //   child: ElevatedButton(
+                //     onPressed: () {
+                //       //กดคำตอบ
+                //     }, //ฟังชั่นการกดปุ่ม
+                //     style: ElevatedButton.styleFrom(
+                //       backgroundColor: Color.fromARGB(255, 248, 232, 207),
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(10.0),
+                //       ),
+                //     ),
+                //     child: const Text(
+                //       'Option',
+                //       style: TextStyle(fontSize: 20),
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 15,
+                // ),
                 SizedBox(
                   height: 40,
                   width: 180,
                   child: ElevatedButton(
                     onPressed: () {
-                      soundCheck();
-                      //กดคำตอบ
+                      (click == true)
+                          ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                          : null;
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => playPage()));
                     }, //ฟังชั่นการกดปุ่ม
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(255, 248, 232, 207),
@@ -675,27 +739,8 @@ class _questionPageState extends State<questionPage> {
                       ),
                     ),
                     child: const Text(
-                      'Option',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                SizedBox(
-                  height: 40,
-                  width: 180,
-                  child: ElevatedButton(
-                    onPressed: () {}, //ฟังชั่นการกดปุ่ม
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 248, 232, 207),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                    child: const Text(
                       'Back to menu',
+                      //................................................................................ยังไม่ได้ลิ้งไปหน้าแรก
                       style: TextStyle(fontSize: 20),
                     ),
                   ),
@@ -709,82 +754,83 @@ class _questionPageState extends State<questionPage> {
     );
   }
 
-  void soundCheck() {
-    showDialog<String>(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-          backgroundColor: Color.fromARGB(255, 255, 192, 91),
-          content: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      height: 80,
-                      width: 80,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(50))),
-                      child: IconButton(
-                          iconSize: 30,
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.volume_up,
-                            color: Colors.black,
-                            size: 40,
-                          )),
-                    ),
-                    Container(
-                      height: 80,
-                      width: 80,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(50))),
-                      child: IconButton(
-                          iconSize: 30,
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.volume_up,
-                            color: Colors.black,
-                            size: 40,
-                          )),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                SizedBox(
-                  height: 40,
-                  width: 180,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }, //ฟังชั่นการกดปุ่ม
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 248, 232, 207),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                    child: const Text(
-                      'Continue',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-              ],
-            ),
-          )),
-    );
-  }
+  // void soundCheck() {
+  //   showDialog<String>(
+  //     context: context,
+  //     builder: (BuildContext context) => AlertDialog(
+  //         backgroundColor: Color.fromARGB(255, 255, 192, 91),
+  //         content: SingleChildScrollView(
+  //           child: Column(
+  //             children: [
+  //               SizedBox(
+  //                 height: 15,
+  //               ),
+  //               Row(
+  //                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //                 children: [
+  //                   Container(
+  //                     height: 80,
+  //                     width: 80,
+  //                     decoration: BoxDecoration(
+  //                         color: Colors.white,
+  //                         borderRadius: BorderRadius.all(Radius.circular(50))),
+  //                     child: IconButton(
+  //                         iconSize: 30,
+  //                         onPressed: () {},
+  //                         icon: Icon(
+  //                           Icons.volume_up,
+  //                           color: Colors.black,
+  //                           size: 40,
+  //                         )),
+  //                   ),
+  //                   Container(
+  //                     height: 80,
+  //                     width: 80,
+  //                     decoration: BoxDecoration(
+  //                         color: Colors.white,
+  //                         borderRadius: BorderRadius.all(Radius.circular(50))),
+  //                     child: IconButton(
+  //                         iconSize: 30,
+  //                         onPressed: () {},
+  //                         icon: Icon(
+  //                           Icons.volume_up,
+  //                           color: Colors.black,
+  //                           size: 40,
+  //                         )),
+  //                   ),
+  //                 ],
+  //               ),
+  //               SizedBox(
+  //                 height: 30,
+  //               ),
+  //               SizedBox(
+  //                 height: 40,
+  //                 width: 180,
+  //                 child: ElevatedButton(
+  //                   onPressed: () {
+
+  //                     Navigator.pop(context);
+  //                   }, //ฟังชั่นการกดปุ่ม
+  //                   style: ElevatedButton.styleFrom(
+  //                     backgroundColor: Color.fromARGB(255, 248, 232, 207),
+  //                     shape: RoundedRectangleBorder(
+  //                       borderRadius: BorderRadius.circular(10.0),
+  //                     ),
+  //                   ),
+  //                   child: const Text(
+  //                     'Continue',
+  //                     style: TextStyle(fontSize: 20),
+  //                   ),
+  //                 ),
+  //               ),
+  //               SizedBox(
+  //                 height: 15,
+  //               ),
+  //             ],
+  //           ),
+  //         )),
+  //   );
+  // }
 
   void finish(sc) {
     showDialog<String>(
@@ -819,6 +865,10 @@ class _questionPageState extends State<questionPage> {
                         height: 40,
                         child: ElevatedButton(
                           onPressed: () {
+                            (click == true)
+                                ? AudioPlayer()
+                                    .play(AssetSource('music/ck.mp3'))
+                                : null;
                             Navigator.pop(context);
                             Navigator.pop(context);
                           }, //ฟังชั่นการกดปุ่ม

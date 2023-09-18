@@ -1,5 +1,7 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/scoreclass.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class aboutPage extends StatefulWidget {
   const aboutPage({super.key});
@@ -9,6 +11,23 @@ class aboutPage extends StatefulWidget {
 }
 
 class _aboutPageState extends State<aboutPage> {
+  bool click = true;
+
+  void getname() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      click = prefs.getBool("click") ?? true;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getname();
+  }
+
   //แสดงข้อมูล
   @override
   Widget build(BuildContext context) {
@@ -24,6 +43,9 @@ class _aboutPageState extends State<aboutPage> {
                 width: 133,
                 child: ElevatedButton(
                   onPressed: () {
+                    (click == true)
+                        ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                        : null;
                     Navigator.pop(context);
                   }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(

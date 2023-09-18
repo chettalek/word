@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:ffi';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/scoreclass.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,11 +17,14 @@ class scorePage extends StatefulWidget {
 class _scorePageState extends State<scorePage> {
   String Fullname = "";
   int row = 0;
+  bool click = true;
+
   getname() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     setState(() {
       Fullname = prefs.getString('name') ?? "";
+      click = prefs.getBool("click") ?? true;
     });
   }
 
@@ -49,10 +54,9 @@ class _scorePageState extends State<scorePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getname().then((value){
+    getname().then((value) {
       totalscore();
     });
-    
   }
 
   //แสดงข้อมูล
@@ -70,6 +74,9 @@ class _scorePageState extends State<scorePage> {
                 width: 133,
                 child: ElevatedButton(
                   onPressed: () {
+                    (click == true)
+                        ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                        : null;
                     Navigator.pop(context);
                   }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
@@ -100,6 +107,9 @@ class _scorePageState extends State<scorePage> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
+                    (click == true)
+                        ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                        : null;
                     getrow(1).then((value) {
                       Navigator.push(
                           context,
@@ -127,6 +137,9 @@ class _scorePageState extends State<scorePage> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
+                    (click == true)
+                        ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                        : null;
                     getrow(2).then((value) {
                       Navigator.push(
                           context,
@@ -154,6 +167,9 @@ class _scorePageState extends State<scorePage> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
+                    (click == true)
+                        ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                        : null;
                     getrow(3).then((value) {
                       Navigator.push(
                           context,
@@ -181,6 +197,9 @@ class _scorePageState extends State<scorePage> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
+                    (click == true)
+                        ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                        : null;
                     getrow(4).then((value) {
                       Navigator.push(
                           context,
@@ -208,6 +227,9 @@ class _scorePageState extends State<scorePage> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
+                    (click == true)
+                        ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                        : null;
                     getrow(5).then((value) {
                       Navigator.push(
                           context,
@@ -235,6 +257,9 @@ class _scorePageState extends State<scorePage> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
+                    (click == true)
+                        ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                        : null;
                     getrow(6).then((value) {
                       Navigator.push(
                           context,
@@ -283,7 +308,7 @@ class _scorePageState extends State<scorePage> {
                 ),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text(
-                    'อันดับคะแนนของผู้เล่นจะแสดงที่หน้าจอ ก็ต่อเมื่อตอบคำถามในบทนั้นๆ ครบทุกข้อ',
+                    'อันดับคะแนนของผู้เล่นจะแสดงก็ต่อเมื่อตอบคำถามในบทนั้นๆ ครบทุกข้อ',
                     style: TextStyle(fontSize: 14),
                   ),
                 ]),
@@ -295,6 +320,9 @@ class _scorePageState extends State<scorePage> {
                   width: 180,
                   child: ElevatedButton(
                     onPressed: () {
+                      (click == true)
+                          ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                          : null;
                       Navigator.pop(context);
                     }, //ฟังชั่นการกดปุ่ม
                     style: ElevatedButton.styleFrom(
