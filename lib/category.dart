@@ -242,6 +242,23 @@ class _categoryPageState extends State<categoryPage> {
                     (click == true)
                         ? AudioPlayer().play(AssetSource('music/ck.mp3'))
                         : null;
+                    getuser(user).then(((value) {
+                      getrow(3).then((value) {
+                        if (chap3 > row) {
+                          replay(3);
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => questionPage(
+                                        row: row,
+                                        chap: 3,
+                                        chap_cur: chap3,
+                                        user: user,
+                                      ))); //.....................................................อันนี้ลองทำเอง ได้ แต่ไม่รู้ถูกไหม
+                        }
+                      });
+                    }));
                   }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
@@ -263,6 +280,23 @@ class _categoryPageState extends State<categoryPage> {
                     (click == true)
                         ? AudioPlayer().play(AssetSource('music/ck.mp3'))
                         : null;
+                    getuser(user).then(((value) {
+                      getrow(4).then((value) {
+                        if (chap4 > row) {
+                          replay(4);
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => questionPage(
+                                        row: row,
+                                        chap: 4,
+                                        chap_cur: chap4,
+                                        user: user,
+                                      ))); //.....................................................อันนี้ลองทำเอง ได้ แต่ไม่รู้ถูกไหม
+                        }
+                      });
+                    }));
                   }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
@@ -284,6 +318,23 @@ class _categoryPageState extends State<categoryPage> {
                     (click == true)
                         ? AudioPlayer().play(AssetSource('music/ck.mp3'))
                         : null;
+                    getuser(user).then(((value) {
+                      getrow(5).then((value) {
+                        if (chap5 > row) {
+                          replay(5);
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => questionPage(
+                                        row: row,
+                                        chap: 5,
+                                        chap_cur: chap5,
+                                        user: user,
+                                      ))); //.....................................................อันนี้ลองทำเอง ได้ แต่ไม่รู้ถูกไหม
+                        }
+                      });
+                    }));
                   }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),
@@ -305,6 +356,23 @@ class _categoryPageState extends State<categoryPage> {
                     (click == true)
                         ? AudioPlayer().play(AssetSource('music/ck.mp3'))
                         : null;
+                    getuser(user).then(((value) {
+                      getrow(6).then((value) {
+                        if (chap6 > row) {
+                          replay(6);
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => questionPage(
+                                        row: row,
+                                        chap: 6,
+                                        chap_cur: chap6,
+                                        user: user,
+                                      ))); //.....................................................อันนี้ลองทำเอง ได้ แต่ไม่รู้ถูกไหม
+                        }
+                      });
+                    }));
                   }, //ฟังชั่นการกดปุ่ม
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 248, 185, 103),

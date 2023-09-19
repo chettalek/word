@@ -242,8 +242,16 @@ class _questionPageState extends State<questionPage> {
                                       .play(AssetSource('music/ck.mp3'))
                                   : null;
                               if (ans1.split("||")[0] == anstrue) {
+                                (click == true)
+                                    ? AudioPlayer()
+                                        .play(AssetSource('music/correct.mp3'))
+                                    : null;
                                 showPopup(true);
                               } else {
+                                (click == true)
+                                    ? AudioPlayer().play(
+                                        AssetSource('music/incorrect.mp3'))
+                                    : null;
                                 showPopup(false);
                               }
                             },
@@ -282,8 +290,16 @@ class _questionPageState extends State<questionPage> {
                                       .play(AssetSource('music/ck.mp3'))
                                   : null;
                               if (ans2.split("||")[0] == anstrue) {
+                                (click == true)
+                                    ? AudioPlayer()
+                                        .play(AssetSource('music/correct.mp3'))
+                                    : null;
                                 showPopup(true);
                               } else {
+                                (click == true)
+                                    ? AudioPlayer().play(
+                                        AssetSource('music/incorrect.mp3'))
+                                    : null;
                                 showPopup(false);
                               }
                               //กดคำตอบ5
@@ -323,8 +339,16 @@ class _questionPageState extends State<questionPage> {
                                       .play(AssetSource('music/ck.mp3'))
                                   : null;
                               if (ans3.split("||")[0] == anstrue) {
+                                (click == true)
+                                    ? AudioPlayer()
+                                        .play(AssetSource('music/correct.mp3'))
+                                    : null;
                                 showPopup(true);
                               } else {
+                                (click == true)
+                                    ? AudioPlayer().play(
+                                        AssetSource('music/incorrect.mp3'))
+                                    : null;
                                 showPopup(false);
                               }
                             },
@@ -363,8 +387,16 @@ class _questionPageState extends State<questionPage> {
                                       .play(AssetSource('music/ck.mp3'))
                                   : null;
                               if (ans4.split("||")[0] == anstrue) {
+                                (click == true)
+                                    ? AudioPlayer()
+                                        .play(AssetSource('music/correct.mp3'))
+                                    : null;
                                 showPopup(true);
                               } else {
+                                (click == true)
+                                    ? AudioPlayer().play(
+                                        AssetSource('music/incorrect.mp3'))
+                                    : null;
                                 showPopup(false);
                               }
                               //กดคำตอบ
@@ -729,8 +761,7 @@ class _questionPageState extends State<questionPage> {
                       (click == true)
                           ? AudioPlayer().play(AssetSource('music/ck.mp3'))
                           : null;
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => playPage()));
+                      Navigator.of(context).popUntil((route) => route.isFirst);
                     }, //ฟังชั่นการกดปุ่ม
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(255, 248, 232, 207),
