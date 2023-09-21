@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/name.dart';
 import 'package:flutter_application_1/play.dart';
@@ -21,6 +22,7 @@ class _signinPageState extends State<signinPage> {
       // 'https://www.googleapis.com/auth/userinfo.email'
     ],
   );
+  bool click = true;
 
   Future signInWithGoogle() async {
     try {
@@ -79,6 +81,20 @@ class _signinPageState extends State<signinPage> {
     }
   }
 
+  void getname() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      click = prefs.getBool("click") ?? true;
+    });
+  }
+
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getname();
+  }
+
   //แสดงข้อมูล
   @override
   Widget build(BuildContext context) {
@@ -97,6 +113,9 @@ class _signinPageState extends State<signinPage> {
                 children: [
                   GestureDetector(
                     onTap: () {
+                      (click == true)
+                          ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                          : null;
                       signInWithGoogle();
                       print("plakek"); //ใส่ตัวลิ้งไปล็อคอิน gmail
                     },

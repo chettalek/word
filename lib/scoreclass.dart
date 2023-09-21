@@ -84,7 +84,7 @@ class _scoreclassState extends State<scoreclassPage> {
             children: [
               SizedBox(
                 height: 40,
-                width: 133,
+                width: 120,
                 child: ElevatedButton(
                   onPressed: () {
                     (click == true)
@@ -99,7 +99,7 @@ class _scoreclassState extends State<scoreclassPage> {
                     ),
                   ),
                   child: const Text(
-                    'Back',
+                    'กลับ',
                     style: TextStyle(fontSize: 25),
                   ),
                 ),

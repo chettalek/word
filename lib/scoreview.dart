@@ -71,7 +71,7 @@ class _scorePageState extends State<scorePage> {
             children: [
               SizedBox(
                 height: 40,
-                width: 133,
+                width: 120,
                 child: ElevatedButton(
                   onPressed: () {
                     (click == true)
@@ -86,7 +86,7 @@ class _scorePageState extends State<scorePage> {
                     ),
                   ),
                   child: const Text(
-                    'Back',
+                    'กลับ',
                     style: TextStyle(fontSize: 25),
                   ),
                 ),
@@ -332,7 +332,7 @@ class _scorePageState extends State<scorePage> {
                       ),
                     ),
                     child: const Text(
-                      'Ok',
+                      'ตกลง',
                       style: TextStyle(fontSize: 20),
                     ),
                   ),

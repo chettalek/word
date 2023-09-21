@@ -40,7 +40,7 @@ class _aboutPageState extends State<aboutPage> {
             children: [
               SizedBox(
                 height: 40,
-                width: 133,
+                width: 120,
                 child: ElevatedButton(
                   onPressed: () {
                     (click == true)
@@ -55,7 +55,7 @@ class _aboutPageState extends State<aboutPage> {
                     ),
                   ),
                   child: const Text(
-                    'Back',
+                    'กลับ',
                     style: TextStyle(fontSize: 25),
                   ),
                 ),
@@ -73,8 +73,8 @@ class _aboutPageState extends State<aboutPage> {
                   height: 5,
                 ),
                 Text(
-                  'About',
-                  style: TextStyle(fontSize: 30),
+                  'เกี่ยวกับ',
+                  style: TextStyle(fontSize: 29),
                 ),
                 Column(
                   children: [
@@ -100,14 +100,28 @@ class _aboutPageState extends State<aboutPage> {
                               height: 10,
                             ),
                             Text(
-                              "2. รูปภาพของโจทย์ จาก www.freepik.com",
+                              "2. คำอ่านจาก www.engdict.com",
                               style: TextStyle(fontSize: 15),
                             ),
                             SizedBox(
-                              height: 7,
+                              height: 10,
                             ),
                             Text(
-                              "3. package เสียง จาก",
+                              "3. รูปภาพของโจทย์ จาก www.freepik.com",
+                              style: TextStyle(fontSize: 15),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "4. package speech to text และ text to speech จาก www.",
+                              style: TextStyle(fontSize: 15),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "5. เสียงอื่นๆในแอปพลิเคชัน จาก www.pixabay.com",
                               style: TextStyle(fontSize: 15),
                             ),
                           ],

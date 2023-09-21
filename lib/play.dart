@@ -48,7 +48,18 @@ class _playPageState extends State<playPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset('assets/images/WORD.png'),
+                Image.asset('assets/images/WORD12.png'),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 215,
+                    ),
+                    Text(
+                      'เกมจับคู่คำศัพท์',
+                      style: TextStyle(color: Colors.amber[900]),
+                    ),
+                  ],
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -65,8 +76,8 @@ class _playPageState extends State<playPage> {
                             ),
                           ),
                     Text(
-                      'Welcome, $Fullname',
-                      style: TextStyle(color: Colors.amber[900], fontSize: 20),
+                      'ยินดีต้อนรับ, $Fullname',
+                      style: TextStyle(color: Colors.amber[900], fontSize: 18),
                     ),
                   ],
                 ),
@@ -77,7 +88,7 @@ class _playPageState extends State<playPage> {
                   children: [
                     SizedBox(
                       height: 40,
-                      width: 160,
+                      width: 180,
                       child: ElevatedButton(
                         onPressed: () {
                           (click == true)
@@ -95,7 +106,7 @@ class _playPageState extends State<playPage> {
                           ),
                         ),
                         child: const Text(
-                          'Play',
+                          'เล่น',
                           style: TextStyle(fontSize: 25),
                         ),
                       ),
@@ -105,7 +116,7 @@ class _playPageState extends State<playPage> {
                     ),
                     SizedBox(
                       height: 40,
-                      width: 160,
+                      width: 180,
                       child: ElevatedButton(
                         onPressed: () {
                           (click == true)
@@ -120,7 +131,7 @@ class _playPageState extends State<playPage> {
                           ),
                         ),
                         child: const Text(
-                          'Option',
+                          'ตัวเลือก',
                           style: TextStyle(fontSize: 25),
                         ),
                       ),
@@ -130,7 +141,7 @@ class _playPageState extends State<playPage> {
                     ),
                     SizedBox(
                       height: 40,
-                      width: 160,
+                      width: 180,
                       child: ElevatedButton(
                         onPressed: () {
                           //showscore();
@@ -149,7 +160,7 @@ class _playPageState extends State<playPage> {
                           ),
                         ),
                         child: const Text(
-                          'Score',
+                          'คะแนน',
                           style: TextStyle(fontSize: 25),
                         ),
                       ),
@@ -159,7 +170,7 @@ class _playPageState extends State<playPage> {
                     ),
                     SizedBox(
                       height: 40,
-                      width: 160,
+                      width: 180,
                       child: ElevatedButton(
                         onPressed: () {
                           (click == true)
@@ -174,7 +185,7 @@ class _playPageState extends State<playPage> {
                           ),
                         ),
                         child: const Text(
-                          'How to play',
+                          'วิธีการเล่น',
                           style: TextStyle(fontSize: 24),
                         ),
                       ),
@@ -184,7 +195,7 @@ class _playPageState extends State<playPage> {
                     ),
                     SizedBox(
                       height: 40,
-                      width: 160,
+                      width: 180,
                       child: ElevatedButton(
                         onPressed: () {
                           (click == true)
@@ -202,7 +213,7 @@ class _playPageState extends State<playPage> {
                           ),
                         ),
                         child: const Text(
-                          'About',
+                          'เกี่ยวกับ',
                           style: TextStyle(fontSize: 24),
                         ),
                       ),
@@ -213,20 +224,24 @@ class _playPageState extends State<playPage> {
                     SizedBox(width: 8),
                     SizedBox(
                       height: 40,
-                      width: 160,
+                      width: 180,
                       child: ElevatedButton(
-                        onPressed: () async {
-                          final SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          await prefs.clear();
+                        onPressed: () {
                           (click == true)
                               ? AudioPlayer().play(AssetSource('music/ck.mp3'))
                               : null;
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) => signinPage())),
-                              (route) => false);
+                          confirmlogout();
+                          // final SharedPreferences prefs =
+                          //     await SharedPreferences.getInstance();
+                          // await prefs.clear();
+                          // (click == true)
+                          //     ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                          //     : null;
+                          // Navigator.pushAndRemoveUntil(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: ((context) => signinPage())),
+                          //     (route) => false);
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color.fromARGB(255, 255, 37, 37),
@@ -235,7 +250,7 @@ class _playPageState extends State<playPage> {
                           ),
                         ),
                         child: const Text(
-                          'Logout',
+                          'ออกจากระบบ',
                           style: TextStyle(fontSize: 25),
                         ),
                       ),
@@ -343,7 +358,7 @@ class _playPageState extends State<playPage> {
                               ),
                             ),
                             child: const Text(
-                              'Continue',
+                              'กลับ',
                               style: TextStyle(fontSize: 20),
                             ),
                           ),
@@ -368,7 +383,7 @@ class _playPageState extends State<playPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'How to play',
+                  'วิธีการเล่น',
                   style: TextStyle(fontSize: 28),
                 ),
                 SizedBox(
@@ -376,13 +391,13 @@ class _playPageState extends State<playPage> {
                 ),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text(
-                    '1. กดที่ปุ่ม Play',
+                    '1. กดที่ปุ่ม เล่น',
                     style: TextStyle(fontSize: 18),
                   ),
                   Text('2. เลือกระดับชั้นของคำถาม',
                       style: TextStyle(fontSize: 18)),
                   Text(
-                      '3. เลือกตอบคำศัพท์ให้ตรงกับรูปภาพของโจทย์ หรือตอบโดยการกดที่รูปไมค์',
+                      '3. เลือกตอบคำศัพท์ให้ตรงกับรูปภาพของโจทย์ หรือตอบโดยการกดที่รูปไมค์เพื่อพูด',
                       style: TextStyle(fontSize: 18)),
                   Text('4. กดที่รูปลำโพงเพื่อฟังเสียงของคำศัพท์ได้',
                       style: TextStyle(fontSize: 18))
@@ -407,7 +422,7 @@ class _playPageState extends State<playPage> {
                       ),
                     ),
                     child: const Text(
-                      'Back',
+                      'กลับ',
                       style: TextStyle(fontSize: 20),
                     ),
                   ),
@@ -421,59 +436,84 @@ class _playPageState extends State<playPage> {
     );
   }
 
-  // void about() {
-  //   showDialog<String>(
-  //     context: context,
-  //     builder: (BuildContext context) => AlertDialog(
-  //         backgroundColor: Color.fromARGB(255, 255, 192, 91),
-  //         content: SingleChildScrollView(
-  //           child: Column(
-  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //             crossAxisAlignment: CrossAxisAlignment.center,
-  //             children: [
-  //               Text(
-  //                 'About',
-  //                 style: TextStyle(fontSize: 28),
-  //               ),
-  //               SizedBox(
-  //                 height: 20,
-  //               ),
-  //               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-  //                 Text(
-  //                     'คำศัพท์ภาษาอังกฤษพื้นฐานระดับชั้นประถมศึกษาสถาบันภาษาอังกฤษ สำนักงานคณะกรรมการการศึกษาขั้นพื้นฐาน กระทรวงศึกษาธิการ',
-  //                     style: TextStyle(fontSize: 18)),
-  //                 Text('', style: TextStyle(fontSize: 18)),
-  //                 Text('', style: TextStyle(fontSize: 18)),
-  //                 Text('', style: TextStyle(fontSize: 18))
-  //               ]),
-  //               SizedBox(
-  //                 height: 20,
-  //               ),
-  //               SizedBox(
-  //                 height: 40,
-  //                 width: 180,
-  //                 child: ElevatedButton(
-  //                   onPressed: () {
-  //                     Navigator.pop(context);
-  //                   }, //ฟังชั่นการกดปุ่ม
-  //                   style: ElevatedButton.styleFrom(
-  //                     backgroundColor: Color.fromARGB(255, 248, 232, 207),
-  //                     shape: RoundedRectangleBorder(
-  //                       borderRadius: BorderRadius.circular(10.0),
-  //                     ),
-  //                   ),
-  //                   child: const Text(
-  //                     'Back',
-  //                     style: TextStyle(fontSize: 20),
-  //                   ),
-  //                 ),
-  //               ),
-  //               SizedBox(
-  //                 height: 1,
-  //               ),
-  //             ],
-  //           ),
-  //         )),
-  //   );
-  // }
+  void confirmlogout() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+          backgroundColor: Color.fromARGB(255, 255, 192, 91),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'ยืนยันการออกจากระบบ',
+                  style: TextStyle(fontSize: 24),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  height: 40,
+                  width: 180,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      (click == true)
+                          ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                          : null;
+                      final SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      await prefs.clear();
+
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => signinPage())),
+                          (route) => false);
+                    }, //ฟังชั่นการกดปุ่ม
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 248, 232, 207),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: const Text(
+                      'ตกลง',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  height: 40,
+                  width: 180,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      (click == true)
+                          ? AudioPlayer().play(AssetSource('music/ck.mp3'))
+                          : null;
+                      Navigator.pop(context);
+                    }, //ฟังชั่นการกดปุ่ม
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 248, 232, 207),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: const Text(
+                      'กลับ',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 1,
+                ),
+              ],
+            ),
+          )),
+    );
+  }
 }

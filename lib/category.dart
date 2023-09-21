@@ -122,7 +122,7 @@ class _categoryPageState extends State<categoryPage> {
             children: [
               SizedBox(
                 height: 40,
-                width: 133,
+                width: 120,
                 child: ElevatedButton(
                   onPressed: () {
                     (click == true)
@@ -137,7 +137,7 @@ class _categoryPageState extends State<categoryPage> {
                     ),
                   ),
                   child: const Text(
-                    'Back',
+                    'กลับ',
                     style: TextStyle(fontSize: 25),
                   ),
                 ),
@@ -150,12 +150,11 @@ class _categoryPageState extends State<categoryPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'เลือกหมวดหมู่',
-                style: TextStyle(fontSize: 28),
+              SizedBox(
+                width: 1,
               ),
               Text(
-                'Choose Category',
+                'เลือกระดับชั้น',
                 style: TextStyle(fontSize: 28),
               ),
               SizedBox(
@@ -441,7 +440,7 @@ class _categoryPageState extends State<categoryPage> {
                             ),
                           ),
                           child: const Text(
-                            'Confirm',
+                            'ยืนยัน',
                             style: TextStyle(fontSize: 20),
                           ),
                         ),
@@ -468,7 +467,7 @@ class _categoryPageState extends State<categoryPage> {
                             ),
                           ),
                           child: const Text(
-                            'Back',
+                            'ยกเลิก',
                             style: TextStyle(fontSize: 20),
                           ),
                         ),
