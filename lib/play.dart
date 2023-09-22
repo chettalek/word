@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/about.dart';
 import 'package:flutter_application_1/category.dart';
@@ -20,6 +21,7 @@ class _playPageState extends State<playPage> {
   String Fullname = "";
   String pic = "";
   bool click = true;
+  bool audio = true;
   void getname() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -27,6 +29,7 @@ class _playPageState extends State<playPage> {
       Fullname = prefs.getString('name') ?? "";
       pic = prefs.getString("pic") ?? "";
       click = prefs.getBool("click") ?? true;
+      audio = prefs.getBool("audio") ?? true;
     });
   }
 
@@ -327,9 +330,34 @@ class _playPageState extends State<playPage> {
                                       BorderRadius.all(Radius.circular(50))),
                               child: IconButton(
                                   iconSize: 30,
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    (click == true)
+                                        ? AudioPlayer()
+                                            .play(AssetSource('music/ck.mp3'))
+                                        : null;
+                                    if (audio == true) {
+                                      FlameAudio.bgm.stop();
+
+                                      final SharedPreferences prefs =
+                                          await SharedPreferences.getInstance();
+                                      await prefs.setBool('audio', false);
+                                      myState(() {
+                                        audio = false;
+                                      });
+                                    } else {
+                                      FlameAudio.bgm.play('bg.mp3');
+                                      final SharedPreferences prefs =
+                                          await SharedPreferences.getInstance();
+                                      await prefs.setBool('audio', true);
+                                      myState(() {
+                                        audio = true;
+                                      });
+                                    }
+                                  },
                                   icon: Icon(
-                                    Icons.music_note,
+                                    (audio == true)
+                                        ? Icons.music_note
+                                        : Icons.music_off,
                                     color: Colors.black,
                                     size: 40,
                                   )),

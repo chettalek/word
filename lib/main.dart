@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/play.dart';
 import 'package:flutter_application_1/signin.dart';
@@ -22,6 +23,15 @@ void main() async {
   );
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   String? email = prefs.getString('email');
+  bool audio = prefs.getBool("audio") ?? true;
+
+  //
+  FlameAudio.bgm.initialize();
+  FlameAudio.bgm
+      .stop()
+      .then((value) => (audio == true) ? FlameAudio.bgm.play('bg.mp3') : null);
+
+  //
   runApp(MyApp(
     email: email ?? "",
   ));
