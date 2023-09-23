@@ -46,7 +46,7 @@ dependencies:
   flutter_tts: ^3.7.0
   speech_to_text: ^6.3.0
   audioplayers: ^5.1.0
-  flame_audio: ^2.1.0
+  flame_audio: ^2.1.1
 
 flutter_icons:
   android: true
