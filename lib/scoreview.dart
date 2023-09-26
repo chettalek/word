@@ -308,7 +308,7 @@ class _scorePageState extends State<scorePage> {
                 ),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text(
-                    'อันดับคะแนนของผู้เล่นจะแสดงก็ต่อเมื่อตอบคำถามในบทนั้นๆ ครบทุกข้อ',
+                    'อันดับคะแนนของผู้เล่นจะแสดงก็ต่อเมื่อตอบคำศัพท์ในบทนั้นๆ ครบทุกข้อ',
                     style: TextStyle(fontSize: 14),
                   ),
                 ]),

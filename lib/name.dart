@@ -57,17 +57,10 @@ class _namePageState extends State<namePage> {
               Column(
                 children: [
                   SizedBox(
-                    height: 130,
+                    height: 170,
                   ),
                   Text(
                     'ใส่ชื่อของคุณ',
-                    style: TextStyle(fontSize: 30),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Enter your name',
                     style: TextStyle(fontSize: 30),
                   ),
                   SizedBox(
@@ -109,7 +102,7 @@ class _namePageState extends State<namePage> {
                             ),
                           ),
                           child: const Text(
-                            'Confirm',
+                            'ยืนยัน',
                             style: TextStyle(fontSize: 25),
                           ),
                         ),
@@ -131,7 +124,7 @@ class _namePageState extends State<namePage> {
                             ),
                           ),
                           child: const Text(
-                            'Back',
+                            'กลับ',
                             style: TextStyle(fontSize: 25),
                           ),
                         ),
