@@ -114,14 +114,21 @@ class _aboutPageState extends State<aboutPage> {
                               height: 10,
                             ),
                             Text(
-                              "4. package speech to text และ text to speech จาก Google",
+                              "4. package speech to text จาก csdcorp.com",
                               style: TextStyle(fontSize: 15),
                             ),
                             SizedBox(
                               height: 10,
                             ),
                             Text(
-                              "5. เสียงอื่นๆในแอปพลิเคชัน จาก www.pixabay.com",
+                              "5. package text to speech จาก tundralabs.com",
+                              style: TextStyle(fontSize: 15),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "6. เสียงอื่นๆในแอปพลิเคชัน จาก www.pixabay.com",
                               style: TextStyle(fontSize: 15),
                             ),
                           ],

@@ -422,7 +422,7 @@ class _playPageState extends State<playPage> {
                     '1. กดที่ปุ่ม เล่น',
                     style: TextStyle(fontSize: 18),
                   ),
-                  Text('2. เลือกระดับชั้นของคำถาม',
+                  Text('2. เลือกระดับชั้นของคำศัพท์',
                       style: TextStyle(fontSize: 18)),
                   Text(
                       '3. เลือกตอบคำศัพท์ให้ตรงกับรูปภาพของโจทย์ หรือตอบโดยการกดที่รูปไมค์เพื่อพูด',

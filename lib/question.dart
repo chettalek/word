@@ -257,7 +257,7 @@ class _questionPageState extends State<questionPage> {
                             },
                             child: Container(
                                 height: 45,
-                                width: 325,
+                                width: 365,
                                 decoration: BoxDecoration(
                                     color: Color.fromARGB(255, 252, 223, 127),
                                     borderRadius:
@@ -306,7 +306,7 @@ class _questionPageState extends State<questionPage> {
                             },
                             child: Container(
                                 height: 45,
-                                width: 325,
+                                width: 365,
                                 decoration: BoxDecoration(
                                     color: Color.fromARGB(255, 252, 223, 127),
                                     borderRadius:
@@ -354,7 +354,7 @@ class _questionPageState extends State<questionPage> {
                             },
                             child: Container(
                                 height: 45,
-                                width: 325,
+                                width: 365,
                                 decoration: BoxDecoration(
                                     color: Color.fromARGB(255, 252, 223, 127),
                                     borderRadius:
@@ -403,7 +403,7 @@ class _questionPageState extends State<questionPage> {
                             },
                             child: Container(
                                 height: 45,
-                                width: 325,
+                                width: 365,
                                 decoration: BoxDecoration(
                                     color: Color.fromARGB(255, 252, 223, 127),
                                     borderRadius:
@@ -804,7 +804,7 @@ class _questionPageState extends State<questionPage> {
                 ),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text(
-                    'คะแนนที่ได้คือ $sc/${widget.row}',
+                    'จำนวนข้อที่ถูกคือ $sc/${widget.row}',
                     style: TextStyle(fontSize: 18),
                   ),
                 ]),
