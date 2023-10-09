@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_application_1/play.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -45,6 +46,16 @@ class _namePageState extends State<namePage> {
     }
   }
 
+  bool click = true;
+
+  void getname() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      click = prefs.getBool("click") ?? true;
+    });
+  }
+
   //แสดงข้อมูล
   @override
   Widget build(BuildContext context) {
@@ -86,6 +97,10 @@ class _namePageState extends State<namePage> {
                         width: 140,
                         child: ElevatedButton(
                           onPressed: () {
+                            (click == true)
+                                ? AudioPlayer()
+                                    .play(AssetSource('music/ck.mp3'))
+                                : null;
                             if (yourname.text.length > 8) {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
@@ -115,6 +130,10 @@ class _namePageState extends State<namePage> {
                         width: 140,
                         child: ElevatedButton(
                           onPressed: () {
+                            (click == true)
+                                ? AudioPlayer()
+                                    .play(AssetSource('music/ck.mp3'))
+                                : null;
                             Navigator.pop(context);
                           }, //ฟังชั่นการกดปุ่ม
                           style: ElevatedButton.styleFrom(

@@ -257,11 +257,11 @@ class _questionPageState extends State<questionPage> {
                             },
                             child: Container(
                                 height: 45,
-                                width: 365,
+                                width: 385,
                                 decoration: BoxDecoration(
                                     color: Color.fromARGB(255, 252, 223, 127),
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(25))),
+                                        BorderRadius.all(Radius.circular(15))),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -269,7 +269,7 @@ class _questionPageState extends State<questionPage> {
                                     Row(
                                       children: [
                                         SizedBox(
-                                          width: 25,
+                                          width: 10,
                                         ),
                                         Text(
                                           '${ans1.split("||")[0]} (${ans1.split("||")[1]}) แปลว่า ${ans1.split("||")[2]}',
@@ -306,11 +306,11 @@ class _questionPageState extends State<questionPage> {
                             },
                             child: Container(
                                 height: 45,
-                                width: 365,
+                                width: 385,
                                 decoration: BoxDecoration(
                                     color: Color.fromARGB(255, 252, 223, 127),
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(25))),
+                                        BorderRadius.all(Radius.circular(15))),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -318,7 +318,7 @@ class _questionPageState extends State<questionPage> {
                                     Row(
                                       children: [
                                         SizedBox(
-                                          width: 25,
+                                          width: 10,
                                         ),
                                         Text(
                                           '${ans2.split("||")[0]} (${ans2.split("||")[1]}) แปลว่า ${ans2.split("||")[2]}',
@@ -354,11 +354,11 @@ class _questionPageState extends State<questionPage> {
                             },
                             child: Container(
                                 height: 45,
-                                width: 365,
+                                width: 385,
                                 decoration: BoxDecoration(
                                     color: Color.fromARGB(255, 252, 223, 127),
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(25))),
+                                        BorderRadius.all(Radius.circular(15))),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -366,7 +366,7 @@ class _questionPageState extends State<questionPage> {
                                     Row(
                                       children: [
                                         SizedBox(
-                                          width: 25,
+                                          width: 10,
                                         ),
                                         Text(
                                           '${ans3.split("||")[0]} (${ans3.split("||")[1]}) แปลว่า ${ans3.split("||")[2]}',
@@ -403,11 +403,11 @@ class _questionPageState extends State<questionPage> {
                             },
                             child: Container(
                                 height: 45,
-                                width: 365,
+                                width: 385,
                                 decoration: BoxDecoration(
                                     color: Color.fromARGB(255, 252, 223, 127),
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(25))),
+                                        BorderRadius.all(Radius.circular(15))),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -415,7 +415,7 @@ class _questionPageState extends State<questionPage> {
                                     Row(
                                       children: [
                                         SizedBox(
-                                          width: 25,
+                                          width: 10,
                                         ),
                                         Text(
                                           '${ans4.split("||")[0]} (${ans4.split("||")[1]}) แปลว่า ${ans4.split("||")[2]}',

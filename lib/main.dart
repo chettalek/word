@@ -27,9 +27,8 @@ void main() async {
 
   //
   FlameAudio.bgm.initialize();
-  FlameAudio.bgm
-      .stop()
-      .then((value) => (audio == true) ? FlameAudio.bgm.play('bg.mp3') : null);
+  FlameAudio.bgm.stop().then(
+      (value) => (audio == true) ? FlameAudio.bgm.play('bg.mp3') : null);
 
   //
   runApp(MyApp(
