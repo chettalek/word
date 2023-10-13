@@ -387,6 +387,7 @@ class _questionPageState extends State<questionPage> {
                                       .play(AssetSource('music/ck.mp3'))
                                   : null;
                               if (ans4.split("||")[0] == anstrue) {
+                                /////////////////////////////////////////////////////////////
                                 (click == true)
                                     ? AudioPlayer()
                                         .play(AssetSource('music/correct.mp3'))
@@ -625,10 +626,17 @@ class _questionPageState extends State<questionPage> {
                             onPressed: () {
                               if (_lastWords == anstrue) {
                                 Navigator.pop(context);
+                                (click == true)
+                                    ? AudioPlayer()
+                                        .play(AssetSource('music/correct.mp3'))
+                                    : null;
                                 showPopup(true);
                               } else {
                                 Navigator.pop(context);
-
+                                (click == true)
+                                    ? AudioPlayer().play(
+                                        AssetSource('music/incorrect.mp3'))
+                                    : null;
                                 showPopup(false);
                               }
                             }, //ฟังชั่นการกดปุ่ม
