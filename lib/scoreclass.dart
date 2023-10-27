@@ -121,7 +121,7 @@ class _scoreclassState extends State<scoreclassPage> {
                         bottomRight: Radius.circular(10))),
                 child: Center(
                     child: Text(
-                  'ระดับชั้นประถมการศึกษาปีที่ ${widget.classno}',
+                  'ระดับชั้นประถมศึกษาปีที่ ${widget.classno}',
                   style: TextStyle(fontSize: 22),
                 )),
               ),

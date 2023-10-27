@@ -185,7 +185,7 @@ class _questionPageState extends State<questionPage> {
                                     bottomRight: Radius.circular(10))),
                             child: Center(
                                 child: Text(
-                              'ระดับชั้นประถมการศึกษาปีที่ ${widget.chap}',
+                              'ระดับชั้นประถมศึกษาปีที่ ${widget.chap}',
                               style: TextStyle(fontSize: 18),
                             )),
                           ),

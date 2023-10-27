@@ -190,7 +190,7 @@ class _categoryPageState extends State<categoryPage> {
                     ),
                   ),
                   child: const Text(
-                    'ระดับชั้นประถมการศึกษาปีที่ 1',
+                    'ระดับชั้นประถมศึกษาปีที่ 1',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
@@ -228,7 +228,7 @@ class _categoryPageState extends State<categoryPage> {
                     ),
                   ),
                   child: const Text(
-                    'ระดับชั้นประถมการศึกษาปีที่ 2',
+                    'ระดับชั้นประถมศึกษาปีที่ 2',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
@@ -266,7 +266,7 @@ class _categoryPageState extends State<categoryPage> {
                     ),
                   ),
                   child: const Text(
-                    'ระดับชั้นประถมการศึกษาปีที่ 3',
+                    'ระดับชั้นประถมศึกษาปีที่ 3',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
@@ -304,7 +304,7 @@ class _categoryPageState extends State<categoryPage> {
                     ),
                   ),
                   child: const Text(
-                    'ระดับชั้นประถมการศึกษาปีที่ 4',
+                    'ระดับชั้นประถมศึกษาปีที่ 4',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
@@ -342,7 +342,7 @@ class _categoryPageState extends State<categoryPage> {
                     ),
                   ),
                   child: const Text(
-                    'ระดับชั้นประถมการศึกษาปีที่ 5',
+                    'ระดับชั้นประถมศึกษาปีที่ 5',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
@@ -380,7 +380,7 @@ class _categoryPageState extends State<categoryPage> {
                     ),
                   ),
                   child: const Text(
-                    'ระดับชั้นประถมการศึกษาปีที่ 6',
+                    'ระดับชั้นประถมศึกษาปีที่ 6',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
